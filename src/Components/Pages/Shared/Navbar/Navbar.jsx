@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const Navbar = () => {
-
+    const { user, logOutUser } = useAuth()
 
     const links = <>
         <li>
@@ -17,25 +18,22 @@ const Navbar = () => {
         </li>
         <li>
             <NavLink
-                to="/singin"
+                to="/about"
                 className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "border border-gray-500 px-4 py-2" : ""
                 }
             >
-                Sing In
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-                to="/singup"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "border border-gray-500 px-4 py-2" : ""
-                }
-            >
-                Sing Up
+                About
             </NavLink>
         </li>
     </>
+
+    const handleLogOut = () => {
+        logOutUser()
+            .then(() => {
+
+            })
+    }
 
 
     return (
@@ -57,7 +55,26 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn btn-outline border-0 border-b-4 border-blue-600">User Profile</a>
+                <div>
+                    {
+                        user ? <>
+                            <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">User Profile</button>
+                            <Link to='/dashboard'>
+                                <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">Dashboard</button>
+                            </Link>
+                            <button onClick={handleLogOut} className="btn btn-outline border-0 border-b-4 border-blue-600">Log Out</button>
+                        </>
+                            :
+                            <>
+                                <Link to='/singin' className="mr-4">
+                                    <button className="btn btn-outline border-0 border-b-4 border-blue-600 ">Sing In</button>
+                                </Link>
+                                <Link to='/singup'>
+                                    <button className="btn btn-outline border-0 border-b-4 border-blue-600">Sing Up</button>
+                                </Link>
+                            </>
+                    }
+                </div>
             </div>
         </div>
     );

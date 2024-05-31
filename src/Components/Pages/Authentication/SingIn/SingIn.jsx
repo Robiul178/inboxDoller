@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { FcGoodDecision, FcGoogle } from "react-icons/fc";
 
 const SingIn = () => {
 
-    const { logInuser, updateUserProfile } = useAuth()
+    const { logInuser, gooogleLogIn } = useAuth()
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm(
         {
@@ -33,6 +34,13 @@ const SingIn = () => {
             .catch(() => {
             });
 
+    };
+
+    const handleGoogleSingIn = () => {
+        gooogleLogIn()
+            .then((res) => {
+                console.log(res)
+            })
     }
 
 
@@ -68,13 +76,14 @@ const SingIn = () => {
                     </div>
 
                 </form>
-                {/* <div>
-                <button
-                    onClick={handleGoogleSingIn}
-                >
-                    Google Sing In
-                </button>
-            </div> */}
+                <div className="flex justify-center items-center ">
+                    <button
+                        onClick={handleGoogleSingIn}
+                        className="w-[640px] btn btn-outline border-0 border-b-4 border-blue-700 hover:bg-blue-700"
+                    >
+                        <FcGoogle />  Google Sing In
+                    </button>
+                </div>
             </div>
         </div>
     );
