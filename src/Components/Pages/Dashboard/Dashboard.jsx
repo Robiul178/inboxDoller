@@ -7,9 +7,9 @@ import Admin from "./Admin/Admin";
 
 const Dashboard = () => {
 
-    const isWorker = true;
+    const isWorker = false;
     const isTaskCreator = false;
-    const isAdmin = false;
+    const isAdmin = true;
 
 
     return (
