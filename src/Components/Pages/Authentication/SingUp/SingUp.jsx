@@ -1,7 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select"
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SingUp = () => {
+    const { singUpUser, updateUserProfile } = useAuth()
 
     const { register, handleSubmit, reset, control, formState: { errors }, } = useForm(
         {
@@ -14,9 +17,30 @@ const SingUp = () => {
     const onSubmit = (data, e) => {
         e.preventDefault();
 
-
         console.log(data)
-        reset()
+
+        singUpUser(data.email, data.password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user)
+                updateUserProfile(data.name, data.picture)
+                    .then((upuser) => {
+                        console.log(upuser);
+                        Swal.fire({
+                            title: "The Internet?",
+                            text: "That thing is still around?",
+                            icon: "success"
+                        });
+                        reset();
+                    })
+                    .catch(error => console.log(error))
+
+            })
+            .catch(() => {
+            });
+
+
+
     }
 
 
@@ -46,7 +70,7 @@ const SingUp = () => {
                         <label className="label">
                             <span className="label-text">Profile Picture URL</span>
                         </label>
-                        <input type="url" placeholder="URL" name='picture' {...register("picture")} className="input input-bordered" required />
+                        <input type="url" placeholder="URL" name='picture' {...register("picture")} className="input input-bordered" />
                     </div>
 
                     <div className="form-control">
