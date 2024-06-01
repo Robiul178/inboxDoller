@@ -1,9 +1,15 @@
 // import React from 'react';
 
+import Banner from "./Banner/Banner";
+import FindJobs from "./FindJobs/FindJobs";
+import ShareEarn from "./ShareEarn/ShareEarn";
+
 const Home = () => {
     return (
-        <div className="py-20">
-            <h2>Home.............</h2>
+        <div>
+            <Banner />
+            <FindJobs />
+            <ShareEarn />
         </div>
     );
 };

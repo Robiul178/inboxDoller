@@ -1,0 +1,92 @@
+[
+    {
+        "task_title": "Blog Post Writing",
+        "task_detail": "Write a 1500-word blog post on the topic of sustainable living.",
+        "task_quantity": 1,
+        "payable_amount": 75,
+        "completion_date": "2024-06-08",
+        "submission_info": "Submit the post in a Google Doc to blogs@greenliving.com",
+        "task_image_url": "https://example.com/images/blog-post.jpg"
+    },
+    {
+        "task_title": "Mobile App Testing",
+        "task_detail": "Test the new features of our mobile app on both iOS and Android platforms.",
+        "task_quantity": 15,
+        "payable_amount": 30,
+        "completion_date": "2024-06-12",
+        "submission_info": "Submit the test reports in the provided template via our testing portal.",
+        "task_image_url": "https://example.com/images/app-testing.jpg"
+    },
+    {
+        "task_title": "Social Media Management",
+        "task_detail": "Manage our company's social media accounts and schedule daily posts.",
+        "task_quantity": 30,
+        "payable_amount": 20,
+        "completion_date": "2024-06-30",
+        "submission_info": "Report weekly activities and engagement metrics in the provided spreadsheet.",
+        "task_image_url": "https://example.com/images/social-media.jpg"
+    },
+    {
+        "task_title": "Market Research Survey",
+        "task_detail": "Conduct a market research survey to gather data on customer preferences.",
+        "task_quantity": 100,
+        "payable_amount": 2,
+        "completion_date": "2024-06-18",
+        "submission_info": "Enter the survey results into our database and summarize key findings.",
+        "task_image_url": "https://example.com/images/market-research.jpg"
+    },
+    {
+        "task_title": "Video Editing",
+        "task_detail": "Edit a series of promotional videos for our latest product launch.",
+        "task_quantity": 3,
+        "payable_amount": 150,
+        "completion_date": "2024-06-14",
+        "submission_info": "Upload the final edited videos to our shared drive.",
+        "task_image_url": "https://example.com/images/video-editing.jpg"
+    },
+    {
+        "task_title": "SEO Optimization",
+        "task_detail": "Optimize our website content for better search engine ranking.",
+        "task_quantity": 1,
+        "payable_amount": 200,
+        "completion_date": "2024-06-25",
+        "submission_info": "Submit the SEO audit report and implementation plan to seo@company.com",
+        "task_image_url": "https://example.com/images/seo.jpg"
+    },
+    {
+        "task_title": "Customer Support",
+        "task_detail": "Provide email support to our customers and resolve their queries.",
+        "task_quantity": 50,
+        "payable_amount": 5,
+        "completion_date": "2024-06-28",
+        "submission_info": "Log each support case and resolution in our CRM system.",
+        "task_image_url": "https://example.com/images/customer-support.jpg"
+    },
+    {
+        "task_title": "Illustration for Children's Book",
+        "task_detail": "Create illustrations for a new children's book, including cover and interior pages.",
+        "task_quantity": 20,
+        "payable_amount": 80,
+        "completion_date": "2024-06-22",
+        "submission_info": "Submit the illustrations in high-resolution PDF format.",
+        "task_image_url": "https://example.com/images/illustration.jpg"
+    },
+    {
+        "task_title": "Data Analysis",
+        "task_detail": "Analyze sales data to identify trends and provide actionable insights.",
+        "task_quantity": 1,
+        "payable_amount": 120,
+        "completion_date": "2024-06-19",
+        "submission_info": "Submit the analysis report in Excel with visualizations.",
+        "task_image_url": "https://example.com/images/data-analysis.jpg"
+    },
+    {
+        "task_title": "Event Planning",
+        "task_detail": "Plan and coordinate our annual corporate event, including venue booking and catering.",
+        "task_quantity": 1,
+        "payable_amount": 500,
+        "completion_date": "2024-06-29",
+        "submission_info": "Submit the event plan and timeline to events@company.com",
+        "task_image_url": "https://example.com/images/event-planning.jpg"
+    }
+]

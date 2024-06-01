@@ -47,7 +47,11 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <div>
+                    <Link to='/'>
+                        <h2 className="text-xl font-bold">TaskkkkkKKK</h2>
+                    </Link>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -67,10 +71,10 @@ const Navbar = () => {
                             :
                             <>
                                 <Link to='/singin' className="mr-4">
-                                    <button className="btn btn-outline border-0 border-b-4 border-blue-600 ">Sing In</button>
+                                    <button className="btn btn-outline border-0 border-b-4 border-green-600 ">Sing In</button>
                                 </Link>
                                 <Link to='/singup'>
-                                    <button className="btn btn-outline border-0 border-b-4 border-blue-600">Sing Up</button>
+                                    <button className="btn btn-outline border-0 border-b-4 border-green-600">Sing Up</button>
                                 </Link>
                             </>
                     }
