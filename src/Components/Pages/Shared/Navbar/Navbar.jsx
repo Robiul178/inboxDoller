@@ -37,7 +37,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="max-w-6xl mx-auto navbar bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +49,7 @@ const Navbar = () => {
                 </div>
                 <div>
                     <Link to='/'>
-                        <h2 className="text-xl font-bold">TaskkkkkKKK</h2>
+                        <h2 className="text-xl font-bold">InboxDollars</h2>
                     </Link>
                 </div>
             </div>
@@ -71,10 +71,7 @@ const Navbar = () => {
                             :
                             <>
                                 <Link to='/singin' className="mr-4">
-                                    <button className="btn btn-outline border-0 border-b-4 border-green-600 ">Sing In</button>
-                                </Link>
-                                <Link to='/singup'>
-                                    <button className="btn btn-outline border-0 border-b-4 border-green-600">Sing Up</button>
+                                    <button className="btn btn-outline  btn-success border border-b-4">Sing In</button>
                                 </Link>
                             </>
                     }

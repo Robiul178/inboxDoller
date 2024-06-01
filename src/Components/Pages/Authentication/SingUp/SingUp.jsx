@@ -3,9 +3,11 @@ import Select from "react-select"
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 const SingUp = () => {
-    const { singUpUser, updateUserProfile, gooogleLogIn } = useAuth()
+    const { singUpUser, updateUserProfile, gooogleLogIn } = useAuth();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, control, formState: { errors }, } = useForm(
         {
@@ -18,8 +20,6 @@ const SingUp = () => {
     const onSubmit = (data, e) => {
         e.preventDefault();
 
-        console.log(data)
-
         singUpUser(data.email, data.password)
             .then((result) => {
                 const user = result.user;
@@ -27,9 +27,10 @@ const SingUp = () => {
                 updateUserProfile(data.name, data.picture)
                     .then((upuser) => {
                         console.log(upuser);
+                        navigate('/dashboard');
                         Swal.fire({
-                            title: "The Internet?",
-                            text: "That thing is still around?",
+                            title: "Sing Up Successfully?",
+                            text: "Success?",
                             icon: "success"
                         });
                         reset();
@@ -45,7 +46,8 @@ const SingUp = () => {
     const handleGoogleSingIn = () => {
         gooogleLogIn()
             .then((res) => {
-                console.log(res)
+                console.log(res);
+                navigate('/dashboard');
             })
     }
 
@@ -105,14 +107,14 @@ const SingUp = () => {
 
 
                     <div className="form-control mt-6">
-                        <button type='submit' className="btn btn-outline border-0 border-b-4 border-blue-700">Sing Up</button>
+                        <button type='submit' className="btn btn-outline  btn-success border border-b-4">Sing Up</button>
                     </div>
 
                 </form>
                 <div className="flex justify-center items-center ">
                     <button
                         onClick={handleGoogleSingIn}
-                        className="w-[640px] btn btn-outline border-0 border-b-4 border-blue-700 hover:bg-blue-700"
+                        className="w-[640px] btn btn-outline  btn-success border border-b-4"
                     >
                         <FcGoogle />  Google Sing In
                     </button>

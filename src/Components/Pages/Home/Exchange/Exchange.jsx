@@ -1,22 +1,13 @@
-import { FaCheckSquare } from 'react-icons/fa';
-import findJob from '../../../../assets/find-jobs.png'
-import SectionTitle from '../../SectionTitle/SectionTitle';
+import { FaCheckSquare } from "react-icons/fa";
+import imggg from '../../../../assets/newww.png'
 
-const FindJobs = () => {
+const Exchange = () => {
     return (
-        <div className="max-w-6xl mx-auto my-24 px-4">
-            <SectionTitle
-                heading={"Earn Rewards"}
-            ></SectionTitle>
-            <div className="md:flex justify-center gap-12 ">
-                <div className="mb-6 ">
-                    <div className='h-[330px] bg-green-100'>
-                        <img src={findJob} alt="" className='relative top-4 p-6' />
-                    </div>
-                </div>
-                <div className="">
-                    <h1 className="text-4xl font-bold mb-4">Get more in less time</h1>
-                    <ul className='text-lg'>
+        <div className=" bg-[#FDF2ED] py-36">
+            <div className="max-w-6xl mx-auto flex">
+                <div>
+                    <h2 className="text-4xl font-bold">Exchange online service at InboxDollers</h2>
+                    <ul className='text-lg mt-4'>
                         <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' /> Target is the right Job</li>
                         <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Read job details and submit</li>
                         <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Do not submit wrong proof</li>
@@ -24,10 +15,14 @@ const FindJobs = () => {
                         <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Take any promotion</li>
                         <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Blog, application, social media etc</li>
                     </ul>
+                    <button className="btn btn-outline  btn-success border border-b-4 mt-3">Get Start</button>
+                </div>
+                <div>
+                    <img src={imggg} alt="" />
                 </div>
             </div>
         </div>
     );
 };
 
-export default FindJobs;
+export default Exchange;

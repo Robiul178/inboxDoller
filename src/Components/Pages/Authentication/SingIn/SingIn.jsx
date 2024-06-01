@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { FcGoodDecision, FcGoogle } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
 
 const SingIn = () => {
-
-    const { logInuser, gooogleLogIn } = useAuth()
+    const { logInuser, gooogleLogIn } = useAuth();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm(
         {
@@ -22,6 +23,7 @@ const SingIn = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 if (user) {
+                    navigate('/dashboard')
                     Swal.fire({
                         title: "Log In?",
                         text: "Log in Successfully!",
@@ -39,7 +41,9 @@ const SingIn = () => {
     const handleGoogleSingIn = () => {
         gooogleLogIn()
             .then((res) => {
-                console.log(res)
+                if (res) {
+                    navigate('/dashboard')
+                }
             })
     }
 
@@ -71,15 +75,19 @@ const SingIn = () => {
                         </label>
                     </div>
 
+                    <Link to='/singup' className="underline text-blue-800 border p-2 rounded-sm text-center">
+                        Please click here for Sing Up
+                    </Link>
+
                     <div className="form-control mt-6">
-                        <button type='submit' className="btn btn-outline border-0 border-b-4 border-blue-700">Sing Up</button>
+                        <button type='submit' className="btn btn-outline  btn-success border border-b-4">Sing Up</button>
                     </div>
 
                 </form>
                 <div className="flex justify-center items-center ">
                     <button
                         onClick={handleGoogleSingIn}
-                        className="w-[640px] btn btn-outline border-0 border-b-4 border-blue-700 hover:bg-blue-700"
+                        className="w-[640px] btn btn-outline  btn-success border border-b-4"
                     >
                         <FcGoogle />  Google Sing In
                     </button>

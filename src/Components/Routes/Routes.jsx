@@ -5,7 +5,7 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const Routes = () => {
     return (
-        <div className="max-w-6xl mx-auto">
+        <div >
             <Navbar />
             <div className="py-20">
                 <Outlet />

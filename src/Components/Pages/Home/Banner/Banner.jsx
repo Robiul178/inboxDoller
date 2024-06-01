@@ -14,13 +14,13 @@ const Banner = () => {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper"
+            className="mySwiper max-w-6xl mx-auto "
         >
             <SwiperSlide>
                 <div className='flex justify-between'>
                     <div className='mt-28'>
                         <h2 className="text-5xl font-bold text-green-600 mb-4">Location Of Small <br /> And Large Jobs</h2>
-                        <p className='text-lg '> TaskkkkkkkkkkkkKKK is an open online marketplace that connects employers and skilled workers.</p>
+                        <p className='text-lg '> InboxDollars is an open online marketplace that connects employers and skilled workers.</p>
                     </div>
                     <div>
                         <img src={banner1} alt="" />
