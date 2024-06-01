@@ -6,7 +6,9 @@
         "payable_amount": 75,
         "completion_date": "2024-06-08",
         "submission_info": "Submit the post in a Google Doc to blogs@greenliving.com",
-        "task_image_url": "https://example.com/images/blog-post.jpg"
+        "task_image_url": "https://example.com/images/blog-post.jpg",
+        "creator_name": "Alice Johnson",
+        "creator_email": "alice.johnson@example.com"
     },
     {
         "task_title": "Mobile App Testing",
@@ -15,7 +17,9 @@
         "payable_amount": 30,
         "completion_date": "2024-06-12",
         "submission_info": "Submit the test reports in the provided template via our testing portal.",
-        "task_image_url": "https://example.com/images/app-testing.jpg"
+        "task_image_url": "https://example.com/images/app-testing.jpg",
+        "creator_name": "Bob Smith",
+        "creator_email": "bob.smith@example.com"
     },
     {
         "task_title": "Social Media Management",
@@ -24,7 +28,9 @@
         "payable_amount": 20,
         "completion_date": "2024-06-30",
         "submission_info": "Report weekly activities and engagement metrics in the provided spreadsheet.",
-        "task_image_url": "https://example.com/images/social-media.jpg"
+        "task_image_url": "https://example.com/images/social-media.jpg",
+        "creator_name": "Carol White",
+        "creator_email": "carol.white@example.com"
     },
     {
         "task_title": "Market Research Survey",
@@ -33,7 +39,9 @@
         "payable_amount": 2,
         "completion_date": "2024-06-18",
         "submission_info": "Enter the survey results into our database and summarize key findings.",
-        "task_image_url": "https://example.com/images/market-research.jpg"
+        "task_image_url": "https://example.com/images/market-research.jpg",
+        "creator_name": "David Brown",
+        "creator_email": "david.brown@example.com"
     },
     {
         "task_title": "Video Editing",
@@ -42,7 +50,9 @@
         "payable_amount": 150,
         "completion_date": "2024-06-14",
         "submission_info": "Upload the final edited videos to our shared drive.",
-        "task_image_url": "https://example.com/images/video-editing.jpg"
+        "task_image_url": "https://example.com/images/video-editing.jpg",
+        "creator_name": "Eve Miller",
+        "creator_email": "eve.miller@example.com"
     },
     {
         "task_title": "SEO Optimization",
@@ -51,7 +61,9 @@
         "payable_amount": 200,
         "completion_date": "2024-06-25",
         "submission_info": "Submit the SEO audit report and implementation plan to seo@company.com",
-        "task_image_url": "https://example.com/images/seo.jpg"
+        "task_image_url": "https://example.com/images/seo.jpg",
+        "creator_name": "Frank Wilson",
+        "creator_email": "frank.wilson@example.com"
     },
     {
         "task_title": "Customer Support",
@@ -60,7 +72,9 @@
         "payable_amount": 5,
         "completion_date": "2024-06-28",
         "submission_info": "Log each support case and resolution in our CRM system.",
-        "task_image_url": "https://example.com/images/customer-support.jpg"
+        "task_image_url": "https://example.com/images/customer-support.jpg",
+        "creator_name": "Grace Lee",
+        "creator_email": "grace.lee@example.com"
     },
     {
         "task_title": "Illustration for Children's Book",
@@ -69,7 +83,9 @@
         "payable_amount": 80,
         "completion_date": "2024-06-22",
         "submission_info": "Submit the illustrations in high-resolution PDF format.",
-        "task_image_url": "https://example.com/images/illustration.jpg"
+        "task_image_url": "https://example.com/images/illustration.jpg",
+        "creator_name": "Henry Martin",
+        "creator_email": "henry.martin@example.com"
     },
     {
         "task_title": "Data Analysis",
@@ -78,7 +94,9 @@
         "payable_amount": 120,
         "completion_date": "2024-06-19",
         "submission_info": "Submit the analysis report in Excel with visualizations.",
-        "task_image_url": "https://example.com/images/data-analysis.jpg"
+        "task_image_url": "https://example.com/images/data-analysis.jpg",
+        "creator_name": "Irene Garcia",
+        "creator_email": "irene.garcia@example.com"
     },
     {
         "task_title": "Event Planning",
@@ -87,6 +105,8 @@
         "payable_amount": 500,
         "completion_date": "2024-06-29",
         "submission_info": "Submit the event plan and timeline to events@company.com",
-        "task_image_url": "https://example.com/images/event-planning.jpg"
+        "task_image_url": "https://example.com/images/event-planning.jpg",
+        "creator_name": "Jack Robinson",
+        "creator_email": "jack.robinson@example.com"
     }
 ]
