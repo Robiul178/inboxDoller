@@ -29,9 +29,6 @@ const TaskDetails = () => {
             status: 'pending',
         };
         setSubmissionDetails('');
-
-
-        console.log('my submission details all okkk', submission)
     }
 
     if (!detailTask) {

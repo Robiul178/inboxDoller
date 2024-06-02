@@ -4,10 +4,14 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAllUsers from "../../../Hooks/useAllUsers";
 
 const SingUp = () => {
     const { singUpUser, updateUserProfile, gooogleLogIn } = useAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
+    const [serverUsers] = useAllUsers();
 
     const { register, handleSubmit, reset, control, formState: { errors }, } = useForm(
         {
@@ -17,37 +21,65 @@ const SingUp = () => {
         }
     );
 
+
     const onSubmit = (data, e) => {
         e.preventDefault();
+        const role = data.userRole.value;
 
-        singUpUser(data.email, data.password)
-            .then((result) => {
-                const user = result.user;
-                console.log(user)
-                updateUserProfile(data.name, data.picture)
-                    .then((upuser) => {
-                        console.log(upuser);
-                        navigate('/dashboard');
-                        Swal.fire({
-                            title: "Sing Up Successfully?",
-                            text: "Success?",
-                            icon: "success"
+        axiosPublic.post('/users', data)
+            .then(result => {
+                if (result.data.insertedId) {
+                    singUpUser(data.email, data.password)
+                        .then(() => {
+                            updateUserProfile(data.name, data.picture)
+                                .then(() => {
+                                    navigate(`/dashboard/${role}/home`);
+                                    Swal.fire({
+                                        title: "Sing Up Successfully?",
+                                        text: "Success?",
+                                        icon: "success"
+                                    });
+                                    reset();
+                                })
+                                .catch(error => console.log(error))
+                        })
+                        .catch(() => {
                         });
-                        reset();
-                    })
-                    .catch(error => console.log(error))
-
+                }
             })
-            .catch(() => {
-            });
-
     };
 
     const handleGoogleSingIn = () => {
         gooogleLogIn()
             .then((res) => {
-                console.log(res);
-                navigate('/dashboard');
+                const userInfo = {
+                    userRole: {
+                        value: "worker"
+                    },
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    picture: res.user?.photoURL
+                }
+
+                const exestingUser = serverUsers?.find(u => u.user.email === res.user?.email);
+
+                if (!exestingUser) {
+                    useAxiosPublic.post('/users', userInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                Swal.fire({
+                                    title: "Sing Up Successfully?",
+                                    text: "Success?",
+                                    icon: "success"
+                                });
+                                reset();
+                            }
+                        })
+                } else {
+                    //
+                }
+                //
+                navigate('/dashboard/worker/home');
             })
     }
 

@@ -3,10 +3,13 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import useAllUsers from "../../../Hooks/useAllUsers";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SingIn = () => {
     const { logInuser, gooogleLogIn } = useAuth();
     const navigate = useNavigate();
+    const [serverUsers] = useAllUsers();
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm(
         {
@@ -41,9 +44,34 @@ const SingIn = () => {
     const handleGoogleSingIn = () => {
         gooogleLogIn()
             .then((res) => {
-                if (res) {
-                    navigate('/dashboard')
+                const userInfo = {
+                    userRole: {
+                        value: "worker"
+                    },
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    picture: res.user?.photoURL
                 }
+
+                const exestingUser = serverUsers?.find(u => u.user.email === res.user?.email);
+
+                if (!exestingUser) {
+                    useAxiosPublic.post('/users', userInfo)
+                        .then(res => {
+                            if (res.data.insertedId) {
+                                Swal.fire({
+                                    title: "Sing Up Successfully?",
+                                    text: "Success?",
+                                    icon: "success"
+                                });
+                                reset();
+                            }
+                        })
+                } else {
+                    //
+                }
+                //
+                navigate('/dashboard/worker/home');
             })
     }
 

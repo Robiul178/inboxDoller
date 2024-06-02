@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import {
+    useQuery
+} from '@tanstack/react-query'
+
+import useAxiosSecure from "./useAxiosSecure";
 
 const useTasks = () => {
-
-    const [tasks, setTasks] = useState();
-
-    useEffect(() => {
-        fetch('/public/task.json')
-            .then(res => res.json())
-            .then(data => setTasks(data))
-    }, [])
-
-    return [tasks]
-
+    const axiosSecure = useAxiosSecure()
+    const { data: tasks, isPending } = useQuery({
+        queryKey: ['tasks'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/task');
+            return res.data
+        }
+    })
+    return [tasks, isPending]
 };
 
 export default useTasks;

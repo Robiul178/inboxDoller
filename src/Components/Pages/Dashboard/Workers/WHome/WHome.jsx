@@ -14,7 +14,7 @@ const WHome = () => {
                     </div>
                     <div className="indicator">
                         <span className="indicator-item ">99+</span>
-                        <button ><IoNotifications className="text-3xl" /> ok</button>
+                        <button ><IoNotifications className="text-3xl" /> </button>
                     </div>
                 </div>
             </div>

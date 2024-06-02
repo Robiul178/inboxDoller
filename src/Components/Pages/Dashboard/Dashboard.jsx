@@ -6,14 +6,16 @@ import Admin from "./Admin/Admin";
 import { BiSolidDashboard } from "react-icons/bi";
 import { ImProfile } from "react-icons/im";
 import { LiaPagerSolid } from "react-icons/lia";
-
+import useAuth from "../../Hooks/useAuth";
+import useAllUsers from "../../Hooks/useAllUsers";
 
 const Dashboard = () => {
+    const { user } = useAuth();
+    const [serverUsers] = useAllUsers();
 
-    const isWorker = true;
-    const isTaskCreator = false;
-    const isAdmin = false;
-
+    const userEmail = user?.email;
+    const users = serverUsers?.find(u => u.user.email === userEmail)
+    const userRole = users?.user.userRole.value;
 
     return (
         <div className="flex">
@@ -23,14 +25,14 @@ const Dashboard = () => {
                     <div className="divider"></div>
 
                     <h2 className="flex text-xl font-bold gap-1 mb-4 text-black"><ImProfile className="mt-1 text-xl" /> PROFILE</h2>
-                    <div className=" bg-white p-4 card">
+                    <div className="h-24 bg-white p-4 card">
                         <div className="avatar">
-                            <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src={user?.photoURL} />
                             </div>
                             <div className="text-black ml-5">
-                                <h2>Name :</h2>
-                                <h2>Role :</h2>
+                                <h2>Name :{user?.displayName}</h2>
+                                <h2>Role :{userRole}</h2>
                             </div>
                         </div>
 
@@ -39,7 +41,7 @@ const Dashboard = () => {
                     <div className="divider"></div>
                     <h2 className="flex text-xl font-bold gap-1 mb-4 text-black"><BiSolidDashboard className="mt-1" /> DASHBOARD</h2>
                     {
-                        isWorker ? <> <Workers /> </> : '' || isTaskCreator ? <> <TaskCreator /> </> : '' || isAdmin ? <> <Admin /> </> : ''
+                        userRole === 'worker' ? <> <Workers /> </> : '' || userRole === 'taskCreator' ? <> <TaskCreator /> </> : '' || userRole === 'admin' ? <> <Admin /> </> : ''
                     }
                     {/* shared nav links */}
                     <div className="divider"></div>
@@ -50,7 +52,7 @@ const Dashboard = () => {
                             Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/salad">
+                        <NavLink to="/order">
                             <FaSearch></FaSearch>
                             Menu</NavLink>
                     </li>
