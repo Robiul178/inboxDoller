@@ -4,7 +4,7 @@ const TaskCard = ({ task }) => {
     const navigate = useNavigate();
 
     const viewDetails = () => {
-        navigate(`/dashboard/task-details/${task.id}`);
+        navigate(`/dashboard/task-details/${task._id}`);
     };
 
     return (

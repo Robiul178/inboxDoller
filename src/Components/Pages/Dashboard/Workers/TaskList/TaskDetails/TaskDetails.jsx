@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
 import useTasks from "../../../../../Hooks/useTasks";
 import { useState } from "react";
-
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+import Swal from 'sweetalert2'
 
 const TaskDetails = () => {
     const [tasks] = useTasks();
     const { id } = useParams()
     const [submissionDetails, setSubmissionDetails] = useState('');
+    const axiosSecure = useAxiosSecure();
 
-    const detailTask = tasks?.find(task => task.id === parseInt(id));
+    const detailTask = tasks?.find(task => task._id === id);
 
 
     const handleSubmit = (e) => {
@@ -29,6 +31,15 @@ const TaskDetails = () => {
             status: 'pending',
         };
         setSubmissionDetails('');
+
+        axiosSecure.post('/mysubmission', submission)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire("SweetAlert2 is working!");
+                }
+            })
+
+
     }
 
     if (!detailTask) {
