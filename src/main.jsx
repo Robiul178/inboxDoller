@@ -22,6 +22,7 @@ import PaymentHistory from './Components/Pages/Dashboard/TaskCreator/PaymentHist
 import AHome from './Components/Pages/Dashboard/Admin/AHome/AHome';
 import ManageTask from './Components/Pages/Dashboard/Admin/ManageTask/ManageTask';
 import ManageUsers from './Components/Pages/Dashboard/Admin/ManageUsers/ManageUsers';
+import TaskDetails from './Components/Pages/Dashboard/Workers/TaskList/TaskDetails/TaskDetails';
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,8 @@ const router = createBrowserRouter([
       {
         path: '/singup',
         element: <SingUp />
-      }
+      },
+
     ]
   },
 
@@ -48,6 +50,11 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <Dashboard></Dashboard>,
     children: [
+
+      {
+        path: '/dashboard/task-details/:id',
+        element: <TaskDetails />
+      },
       //workers
       {
         path: '/dashboard/worker/home',

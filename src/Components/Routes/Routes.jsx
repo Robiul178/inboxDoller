@@ -7,9 +7,7 @@ const Routes = () => {
     return (
         <div >
             <Navbar />
-            <div className="py-20">
-                <Outlet />
-            </div>
+            <Outlet />
             <Footer />
         </div>
     );

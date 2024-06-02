@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "task_title": "Blog Post Writing",
         "task_detail": "Write a 1500-word blog post on the topic of sustainable living.",
         "task_quantity": 1,
@@ -11,6 +12,7 @@
         "creator_email": "alice.johnson@example.com"
     },
     {
+        "id": 2,
         "task_title": "Mobile App Testing",
         "task_detail": "Test the new features of our mobile app on both iOS and Android platforms.",
         "task_quantity": 15,
@@ -22,6 +24,7 @@
         "creator_email": "bob.smith@example.com"
     },
     {
+        "id": 3,
         "task_title": "Social Media Management",
         "task_detail": "Manage our company's social media accounts and schedule daily posts.",
         "task_quantity": 30,
@@ -33,6 +36,7 @@
         "creator_email": "carol.white@example.com"
     },
     {
+        "id": 4,
         "task_title": "Market Research Survey",
         "task_detail": "Conduct a market research survey to gather data on customer preferences.",
         "task_quantity": 100,
@@ -44,6 +48,7 @@
         "creator_email": "david.brown@example.com"
     },
     {
+        "id": 5,
         "task_title": "Video Editing",
         "task_detail": "Edit a series of promotional videos for our latest product launch.",
         "task_quantity": 3,
@@ -55,6 +60,7 @@
         "creator_email": "eve.miller@example.com"
     },
     {
+        "id": 6,
         "task_title": "SEO Optimization",
         "task_detail": "Optimize our website content for better search engine ranking.",
         "task_quantity": 1,
@@ -66,6 +72,7 @@
         "creator_email": "frank.wilson@example.com"
     },
     {
+        "id": 7,
         "task_title": "Customer Support",
         "task_detail": "Provide email support to our customers and resolve their queries.",
         "task_quantity": 50,
@@ -77,6 +84,7 @@
         "creator_email": "grace.lee@example.com"
     },
     {
+        "id": 8,
         "task_title": "Illustration for Children's Book",
         "task_detail": "Create illustrations for a new children's book, including cover and interior pages.",
         "task_quantity": 20,
@@ -88,6 +96,7 @@
         "creator_email": "henry.martin@example.com"
     },
     {
+        "id": 9,
         "task_title": "Data Analysis",
         "task_detail": "Analyze sales data to identify trends and provide actionable insights.",
         "task_quantity": 1,
@@ -99,6 +108,7 @@
         "creator_email": "irene.garcia@example.com"
     },
     {
+        "id": 10,
         "task_title": "Event Planning",
         "task_detail": "Plan and coordinate our annual corporate event, including venue booking and catering.",
         "task_quantity": 1,
