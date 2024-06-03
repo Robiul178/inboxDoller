@@ -4,23 +4,30 @@ import Swal from 'sweetalert2'
 import useCoin from "../../../../Hooks/useCoin";
 import { useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 
 
 const AddNewTask = () => {
     const [taskQuantity, setTaskQuntity] = useState()
     const [paybleAmmount, setPaybleAmmount] = useState()
     const [coin] = useCoin();
+    const [cost, setCost] = useState()
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     //form handle
     const { register, handleSubmit, reset } = useForm();
+
     const handleQuantity = (event) => { setTaskQuntity(event.target.value) };
     const handlePaybleAmmount = (event) => { setPaybleAmmount(event.target.value) };
+
+
 
     const onSubmit = (data, e) => {
         e.preventDefault();
         const totalCost = taskQuantity * paybleAmmount;
+        setCost(totalCost)
 
         if (totalCost < coin) {
             const postData = {
@@ -38,8 +45,12 @@ const AddNewTask = () => {
             axiosSecure.post('/tasks', postData)
                 .then(res => {
                     if (res.data.insertedId) {
-                        reset()
-                        Swal.fire("Task Added Successfully")
+                        axiosPublic.put(`/users/updateCoin/${user?.email}`, { totalCost, cost })
+                            .then(res => {
+                                if (res.data.modifiedCount > 0) {
+                                    Swal.fire("TAsk Addes Successfully")
+                                }
+                            })
                     }
                 })
 
@@ -54,6 +65,7 @@ const AddNewTask = () => {
 
     return (
         <div>
+            <h2>{coin}</h2>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body">
