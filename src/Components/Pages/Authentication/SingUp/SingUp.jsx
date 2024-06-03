@@ -60,26 +60,19 @@ const SingUp = () => {
                     email: res.user?.email,
                     picture: res.user?.photoURL
                 }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/worker/home');
+                            Swal.fire({
+                                title: "Sing Up Successfully?",
+                                text: "Success?",
+                                icon: "success"
+                            });
+                        }
+                    })
 
-                const exestingUser = serverUsers?.find(u => u.user.email === res.user?.email);
-
-                if (!exestingUser) {
-                    useAxiosPublic.post('/users', userInfo)
-                        .then(res => {
-                            if (res.data.insertedId) {
-                                navigate('/dashboard/worker/home');
-                                Swal.fire({
-                                    title: "Sing Up Successfully?",
-                                    text: "Success?",
-                                    icon: "success"
-                                });
-                                reset();
-                            }
-                        })
-                } else {
-                    //
-                }
-            })
+            });
     }
 
 

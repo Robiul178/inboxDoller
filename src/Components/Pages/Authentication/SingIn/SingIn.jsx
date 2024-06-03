@@ -55,15 +55,14 @@ const SingIn = () => {
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
-                        console.log(res.data);
-                        // if (res.data.insertedId) {
-                        //     navigate('/dashboard/worker/home');
-                        //     Swal.fire({
-                        //         title: "Sing Up Successfully?",
-                        //         text: "Success?",
-                        //         icon: "success"
-                        //     });
-                        // }
+                        if (res.data.insertedId) {
+                            navigate('/dashboard/worker/home');
+                            Swal.fire({
+                                title: "Sing Up Successfully?",
+                                text: "Success?",
+                                icon: "success"
+                            });
+                        }
                     })
 
             });
