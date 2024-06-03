@@ -6,18 +6,18 @@ import { FaCoins } from "react-icons/fa";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import Swal from 'sweetalert2'
+import useCoin from "../../../../Hooks/useCoin";
 
 
 const Withdrawals = () => {
     const { user } = useAuth()
-    const [serverUsers] = useAllUsers();
+    const [coin] = useCoin();
     const [coinToWithdraw, setCoinToWithdraw] = useState();
     const [withdrawAmount, setWithdrawAmount] = useState();
 
 
     const axiosSecure = useAxiosSecure();
-    const userEmail = user?.email;
-    const withdrawUser = serverUsers?.find(u => u.user.email === userEmail);
+
 
     //form handle
     const { register, handleSubmit, reset, control, } = useForm(
@@ -28,7 +28,7 @@ const Withdrawals = () => {
         }
     );
 
-    const maxWithdrawalAmount = withdrawUser?.coin / 20;
+    const maxWithdrawalAmount = coin / 20;
 
     const handleChange = (event) => {
         const coins = event.target.value;

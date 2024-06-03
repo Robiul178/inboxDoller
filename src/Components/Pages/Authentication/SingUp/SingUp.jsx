@@ -5,13 +5,11 @@ import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import useAllUsers from "../../../Hooks/useAllUsers";
 
 const SingUp = () => {
     const { singUpUser, updateUserProfile, gooogleLogIn } = useAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
-    const [serverUsers] = useAllUsers();
 
     const { register, handleSubmit, reset, control, formState: { errors }, } = useForm(
         {
