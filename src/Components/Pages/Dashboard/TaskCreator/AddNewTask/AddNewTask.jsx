@@ -11,7 +11,6 @@ const AddNewTask = () => {
     const [taskQuantity, setTaskQuntity] = useState()
     const [paybleAmmount, setPaybleAmmount] = useState()
     const [coin] = useCoin();
-    const [cost, setCost] = useState()
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
@@ -27,7 +26,6 @@ const AddNewTask = () => {
     const onSubmit = (data, e) => {
         e.preventDefault();
         const totalCost = taskQuantity * paybleAmmount;
-        setCost(totalCost)
 
         if (totalCost < coin) {
             const postData = {
@@ -45,9 +43,10 @@ const AddNewTask = () => {
             axiosSecure.post('/tasks', postData)
                 .then(res => {
                     if (res.data.insertedId) {
-                        axiosPublic.put(`/users/updateCoin/${user?.email}`, { totalCost, cost })
+                        axiosPublic.put(`/users/updateCoin/${user?.email}`, { totalCost })
                             .then(res => {
                                 if (res.data.modifiedCount > 0) {
+                                    reset();
                                     Swal.fire("TAsk Addes Successfully")
                                 }
                             })
@@ -65,7 +64,13 @@ const AddNewTask = () => {
 
     return (
         <div>
-            <h2>{coin}</h2>
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Home</a></li>
+                    <li><a>Task Creator</a></li>
+                    <li> Add new Task</li>
+                </ul>
+            </div>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body">
