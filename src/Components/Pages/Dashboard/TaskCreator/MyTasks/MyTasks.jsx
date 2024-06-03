@@ -5,12 +5,16 @@ import useCoin from "../../../../Hooks/useCoin";
 import { FaTrash } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import Swal from "sweetalert2";
+import UpdateModal from "./UpdatModa/UpdateModal";
+import { useState } from "react";
 
 
 const MyTasks = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const [coin] = useCoin()
+
+    const [updatetask, setUpdateTask] = useState()
 
 
     const { data: myAddedTask, isLoading, refetch } = useQuery({
@@ -22,11 +26,7 @@ const MyTasks = () => {
     })
     if (isLoading) return <p className="progress progress-primary w-12"></p>
 
-    const handleUpdate = (id) => {
-        console.log(id);
-    }
     const handleDelete = (id) => {
-
         axiosSecure.delete(`/task/myTask/${id}`)
             .then(res => {
                 if (res.data.deletedCount > 0) {
@@ -87,7 +87,9 @@ const MyTasks = () => {
                                             {task.completion_date}
                                         </td>
                                         <td className="p-3 ">
-                                            <button onClick={() => handleUpdate(task._id)}> <FiEdit className="text-lg" /></button>
+                                            <button onClick={() => setUpdateTask(task)}>
+                                                <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}> <FiEdit className="text-lg" /></button>
+                                            </button>
                                             <button onClick={() => handleDelete(task._id)}> <FaTrash className="text-lg mr-2" /></button>
                                         </td>
                                     </tr>
@@ -96,6 +98,12 @@ const MyTasks = () => {
 
                     </table>
 
+                </div>
+                <div>
+                    <UpdateModal
+                        updatetask={updatetask}
+                        refetch={refetch}
+                    ></UpdateModal>
                 </div>
             </div>
         </div>
