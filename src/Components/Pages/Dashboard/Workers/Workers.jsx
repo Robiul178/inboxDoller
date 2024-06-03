@@ -1,4 +1,4 @@
-import { FaHome, FaSubway, FaTasks } from "react-icons/fa";
+import { FaHome, FaSubway, FaTasks, FaWallet } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 
@@ -19,6 +19,11 @@ const Workers = () => {
                 <NavLink to="/dashboard/worker/mysubmission">
                     <FaSubway></FaSubway>
                     My Submission</NavLink>
+            </li>
+            <li>
+                <NavLink to="/dashboard/worker/withdrawals">
+                    <FaWallet></FaWallet >
+                    Withdrawals</NavLink>
             </li>
         </div>
     );

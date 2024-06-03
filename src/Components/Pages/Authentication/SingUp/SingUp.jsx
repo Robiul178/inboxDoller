@@ -67,6 +67,7 @@ const SingUp = () => {
                     useAxiosPublic.post('/users', userInfo)
                         .then(res => {
                             if (res.data.insertedId) {
+                                navigate('/dashboard/worker/home');
                                 Swal.fire({
                                     title: "Sing Up Successfully?",
                                     text: "Success?",
@@ -78,8 +79,6 @@ const SingUp = () => {
                 } else {
                     //
                 }
-                //
-                navigate('/dashboard/worker/home');
             })
     }
 

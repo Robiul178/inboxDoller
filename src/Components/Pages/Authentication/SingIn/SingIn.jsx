@@ -10,6 +10,7 @@ const SingIn = () => {
     const { logInuser, gooogleLogIn } = useAuth();
     const navigate = useNavigate();
     const [serverUsers] = useAllUsers();
+    const axiosPublic = useAxiosPublic();
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm(
         {
@@ -52,27 +53,21 @@ const SingIn = () => {
                     email: res.user?.email,
                     picture: res.user?.photoURL
                 }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        // if (res.data.insertedId) {
+                        //     navigate('/dashboard/worker/home');
+                        //     Swal.fire({
+                        //         title: "Sing Up Successfully?",
+                        //         text: "Success?",
+                        //         icon: "success"
+                        //     });
+                        // }
+                    })
 
-                const exestingUser = serverUsers?.find(u => u.user.email === res.user?.email);
+            });
 
-                if (!exestingUser) {
-                    useAxiosPublic.post('/users', userInfo)
-                        .then(res => {
-                            if (res.data.insertedId) {
-                                Swal.fire({
-                                    title: "Sing Up Successfully?",
-                                    text: "Success?",
-                                    icon: "success"
-                                });
-                                reset();
-                            }
-                        })
-                } else {
-                    //
-                }
-                //
-                navigate('/dashboard/worker/home');
-            })
     }
 
 

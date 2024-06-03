@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom";
 import useTasks from "../../../../../Hooks/useTasks";
 import { useState } from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import useAuth from "../../../../../Hooks/useAuth";
 
 const TaskDetails = () => {
+    const { user } = useAuth()
     const [tasks] = useTasks();
     const { id } = useParams()
     const [submissionDetails, setSubmissionDetails] = useState('');
@@ -22,11 +24,11 @@ const TaskDetails = () => {
             task_detail: detailTask.task_detail,
             task_img_url: detailTask.task_image_url,
             payable_amount: detailTask.payable_amount,
-            worker_email: 'worker@example.com', // Replace with actual worker email
-            submission_details: submissionDetails,
-            worker_name: 'Worker Name', // Replace with actual worker name
             creator_name: detailTask.creator_name,
             creator_email: detailTask.creator_email,
+            worker_email: user?.email,
+            worker_name: user?.displayName,
+            submission_details: submissionDetails,
             current_date: new Date().toISOString().split('T')[0],
             status: 'pending',
         };
@@ -35,7 +37,7 @@ const TaskDetails = () => {
         axiosSecure.post('/mysubmission', submission)
             .then(res => {
                 if (res.data.insertedId) {
-                    Swal.fire("SweetAlert2 is working!");
+                    Swal.fire("sent sucessfully");
                 }
             })
 

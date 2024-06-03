@@ -27,6 +27,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import Withdrawals from './Components/Pages/Dashboard/Workers/Withdrawals/Withdrawals';
 
 
 
@@ -53,7 +55,9 @@ const router = createBrowserRouter([
 
   {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute>
+      <Dashboard></Dashboard>
+    </PrivateRoute>,
     children: [
 
       {
@@ -72,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/worker/mysubmission',
         element: <MySubmission />
+      },
+      {
+        path: '/dashboard/worker/withdrawals',
+        element: <Withdrawals />
       },
 
       //task creator
