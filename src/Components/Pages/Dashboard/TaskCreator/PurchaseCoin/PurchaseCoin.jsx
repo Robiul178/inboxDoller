@@ -1,19 +1,16 @@
 
 import { useState } from 'react';
 import PaymentModal from './PaymentModal/PaymentModal';
-import useCoin from '../../../../Hooks/useCoin';
+// import useCoin from '../../../../Hooks/useCoin';
 
 
 const PurchaseCoin = () => {
     const [coinPrice, setCoinPrice] = useState();
     const [coinAmmount, setCoinAmmount] = useState()
-    const [coin] = useCoin();
+    // const [coin] = useCoin();
 
     return (
         <div className="p-8">
-            <h2>PurchaseCoin............. {coin}</h2>
-
-
             <div className="">
 
                 <div onClick={() => setCoinPrice(1)} className="card  text-green-700 shadow-xl">

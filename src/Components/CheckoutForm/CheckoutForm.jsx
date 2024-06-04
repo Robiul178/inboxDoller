@@ -97,7 +97,6 @@ const CheckoutForm = ({ coinPrice, coinAmmount }) => {
                                     if (res.data.modifiedCount > 0) {
                                         Swal.fire('Done! ')
 
-                                        refetch();
                                     }
                                 })
                         }
