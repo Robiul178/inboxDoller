@@ -1,32 +1,34 @@
 
 import { useState } from 'react';
 import PaymentModal from './PaymentModal/PaymentModal';
+import useCoin from '../../../../Hooks/useCoin';
 
 
 const PurchaseCoin = () => {
-    const [coinPrice, setCoinPrice] = useState()
+    const [coinPrice, setCoinPrice] = useState();
+    const [coinAmmount, setCoinAmmount] = useState()
+    const [coin] = useCoin();
 
     return (
         <div className="p-8">
-            <h2>PurchaseCoin.............</h2>
+            <h2>PurchaseCoin............. {coin}</h2>
 
 
             <div className="">
 
-
-                <div onClick={() => setCoinPrice(1000)} className="card  text-green-700 shadow-xl">
-                    <div className="card-body">
+                <div onClick={() => setCoinPrice(1)} className="card  text-green-700 shadow-xl">
+                    <div onClick={() => setCoinAmmount(10)} className="card-body">
                         <h2 className="card-title">10 coins = 1 dollar</h2>
                         <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
                     </div>
                 </div>
 
 
-
             </div>
             <div>
                 <PaymentModal
                     coinPrice={coinPrice}
+                    coinAmmount={coinAmmount}
                 ></PaymentModal>
             </div>
         </div>

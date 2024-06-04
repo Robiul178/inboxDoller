@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { MdOutlinePayment } from 'react-icons/md';
 import useAuth from '../Hooks/useAuth';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 
 const CheckoutForm = ({ coinPrice }) => {
@@ -15,6 +17,7 @@ const CheckoutForm = ({ coinPrice }) => {
     const [clientSecret, setClientSecret] = useState("");
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
 
 
@@ -78,7 +81,9 @@ const CheckoutForm = ({ coinPrice }) => {
                 }
                 axiosSecure.post('/payment', paymentInfo)
                     .then(res => {
-                        console.log(res.data);
+                        if (res.data) {
+                            Swal.fire('Nice')
+                        }
                     })
 
             }
