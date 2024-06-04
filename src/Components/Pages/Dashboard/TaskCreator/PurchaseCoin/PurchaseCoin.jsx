@@ -23,6 +23,20 @@ const PurchaseCoin = () => {
                     </div>
                 </div>
 
+                <div onClick={() => setCoinPrice(9)} className="card  text-green-700 shadow-xl">
+                    <div onClick={() => setCoinAmmount(100)} className="card-body">
+                        <h2 className="card-title">100 coins = 9 dollar</h2>
+                        <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
+                    </div>
+                </div>
+
+                <div onClick={() => setCoinPrice(19)} className="card  text-green-700 shadow-xl">
+                    <div onClick={() => setCoinAmmount(500)} className="card-body">
+                        <h2 className="card-title">500 coins = 19 dollar</h2>
+                        <button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
+                    </div>
+                </div>
+
 
             </div>
             <div>

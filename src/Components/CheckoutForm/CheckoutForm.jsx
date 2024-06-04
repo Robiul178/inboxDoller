@@ -3,26 +3,28 @@ import {
     useElements,
     CardElement,
 } from '@stripe/react-stripe-js';
+
 import { useEffect, useState } from 'react';
 import { MdOutlinePayment } from 'react-icons/md';
 import useAuth from '../Hooks/useAuth';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import useAllUsers from '../Hooks/useAllUsers';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
-const CheckoutForm = ({ coinPrice }) => {
+const CheckoutForm = ({ coinPrice, coinAmmount }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
     const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
-
+    const axiosSecure = useAxiosSecure();
+    const [serverUsers, refetch] = useAllUsers();
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ coinPrice }),
@@ -33,8 +35,10 @@ const CheckoutForm = ({ coinPrice }) => {
 
 
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
 
         if (!elements || !stripe) {
             return;
@@ -71,6 +75,7 @@ const CheckoutForm = ({ coinPrice }) => {
         if (confirmError) {
             console.log('confirmError', confirmError)
         } else {
+            console.log('paymentIntent', paymentIntent);
             if (paymentIntent.id) {
                 const paymentInfo = {
                     payment_id: paymentIntent.id,
@@ -79,18 +84,28 @@ const CheckoutForm = ({ coinPrice }) => {
                     buyer_name: user?.displayName,
                     buyer_email: user?.email,
                 }
+
                 axiosSecure.post('/payment', paymentInfo)
-                    .then(res => {
-                        if (res.data) {
-                            Swal.fire('Nice')
+                    .then((res) => {
+                        if (res.data.insertedId) {
+                            const userEmail = user?.email;
+                            const serverUserCoin = serverUsers?.find(u => u.user?.email === userEmail);
+                            const userCoin = serverUserCoin.coin;
+                            const newCoin = userCoin + coinAmmount;
+                            axiosPublic.put(`/user/newCoin/${user?.email}`, { newCoin })
+                                .then(res => {
+                                    if (res.data.modifiedCount > 0) {
+                                        Swal.fire('Done! ')
+
+                                        refetch();
+                                    }
+                                })
                         }
                     })
 
             }
 
         }
-
-
     };
 
     return (
@@ -112,8 +127,10 @@ const CheckoutForm = ({ coinPrice }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret} >
-                    <MdOutlinePayment className="text-xl mr-2" /> PAY
+                <button type="submit" disabled={!stripe || !clientSecret}
+                    className='btn btn-outline'
+                >
+                    <MdOutlinePayment className="text-xl mr-2 " /> PAY
                 </button>
             </form>
         </div>
