@@ -29,6 +29,7 @@ import {
 } from '@tanstack/react-query'
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Withdrawals from './Components/Pages/Dashboard/Workers/Withdrawals/Withdrawals';
+import PaymentMethod from './Components/PaymentMethod/PaymentMethod';
 
 
 
@@ -59,7 +60,10 @@ const router = createBrowserRouter([
       <Dashboard></Dashboard>
     </PrivateRoute>,
     children: [
-
+      {
+        path: '/dashboard/payment',
+        element: <PaymentMethod />
+      },
       {
         path: '/dashboard/task-details/:id',
         element: <TaskDetails />
