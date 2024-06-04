@@ -22,6 +22,7 @@ const TaskDetails = () => {
             task_id: detailTask.id,
             task_title: detailTask.task_title,
             task_detail: detailTask.task_detail,
+            task_quantity: detailTask.task_quantity,
             task_img_url: detailTask.task_image_url,
             payable_amount: detailTask.payable_amount,
             creator_name: detailTask.creator_name,

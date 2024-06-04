@@ -1,21 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../../Hooks/useAuth";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+
 import useCoin from "../../../../Hooks/useCoin";
+import usePaymentHistory from "../../../../Hooks/usePaymentHistory";
 
 
 const PaymentHistory = () => {
-    const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
     const [coin] = useCoin()
-
-    const { data: paymentHistory, isLoading, refetch } = useQuery({
-        queryKey: ['paymentHistory'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/payment-history/${user?.email}`);
-            return res.data;
-        }
-    })
+    const [paymentHistory, isLoading] = usePaymentHistory()
     if (isLoading) return <p className="progress progress-primary w-12"></p>
 
 
@@ -30,7 +20,7 @@ const PaymentHistory = () => {
                 </ul>
             </div>
             <div className="flex justify-between p-6 border text-xs font-semibold">
-                <h2>Total Added Task :{paymentHistory?.length}</h2>
+                <h2>Total Payment History :{paymentHistory?.length}</h2>
                 <h3>Available Coins: {coin}</h3>
             </div>
             <div>

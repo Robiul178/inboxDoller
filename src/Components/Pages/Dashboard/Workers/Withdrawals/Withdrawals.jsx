@@ -70,7 +70,7 @@ const Withdrawals = () => {
             <div className="flex justify-end">
                 <h2 className=" p-4 text-lg font-semibold shadow bg-green-300">
                     <span className="flex">
-                        Total Coin : <FaCoins className="text-lg mt-1 mx-2" />  {withdrawUser?.coin}
+                        Total Coin : <FaCoins className="text-lg mt-1 mx-2" />  {coin}
                     </span>
                 </h2>
             </div>
