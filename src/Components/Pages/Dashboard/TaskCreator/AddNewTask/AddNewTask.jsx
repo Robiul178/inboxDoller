@@ -46,8 +46,9 @@ const AddNewTask = () => {
                         axiosPublic.put(`/users/updateCoin/${user?.email}`, { totalCost })
                             .then(res => {
                                 if (res.data.modifiedCount > 0) {
+
+                                    Swal.fire("TAsk Addes Successfully");
                                     reset();
-                                    Swal.fire("TAsk Addes Successfully")
                                 }
                             })
                     }
@@ -109,7 +110,7 @@ const AddNewTask = () => {
                 <div className=" grid grid-cols-2 gap-6 ">
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Submission Info (Per Task)</span>
+                            <span className="label-text">Submission Info</span>
                         </label>
                         <input type="text" {...register('submission_info')} placeholder="Submission Info" className="input input-bordered w-full" />
                     </div>

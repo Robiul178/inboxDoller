@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import useAllUsers from "../../../Hooks/useAllUsers";
 
 
 const Navbar = () => {
-    const { user, logOutUser } = useAuth()
+    const { user, logOutUser } = useAuth();
+    const [serverUsers] = useAllUsers()
 
     const links = <>
         <li>
@@ -35,6 +37,9 @@ const Navbar = () => {
             })
     }
 
+    // const userEmail = user?.email;
+    // const roleForUser = serverUsers?.find(i => i.user?.email === userEmail)
+    // const role = roleForUser.user?.userRole.value;
 
     return (
         <div className="max-w-6xl mx-auto navbar bg-base-100">
@@ -63,7 +68,10 @@ const Navbar = () => {
                     {
                         user ? <>
                             <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">User Profile</button>
-                            <Link to='/dashboard'>
+                            <Link
+                                //  to={`/dashboard/${role}/home`}
+                                to='/dashboard'
+                            >
                                 <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">Dashboard</button>
                             </Link>
                             <button onClick={handleLogOut} className="btn btn-outline border-0 border-b-4 border-blue-600">Log Out</button>

@@ -22,7 +22,6 @@ const SingUp = () => {
 
     const onSubmit = (data, e) => {
         e.preventDefault();
-        const role = data.userRole.value;
 
         axiosPublic.post('/users', data)
             .then(result => {
@@ -31,7 +30,7 @@ const SingUp = () => {
                         .then(() => {
                             updateUserProfile(data.name, data.picture)
                                 .then(() => {
-                                    navigate(`/dashboard/${role}/home`);
+                                    navigate('/');
                                     Swal.fire({
                                         title: "Sing Up Successfully?",
                                         text: "Success?",

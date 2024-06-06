@@ -12,14 +12,14 @@ const Admin = () => {
                     Home</NavLink>
             </li>
             <li>
-                <NavLink to="/dashboard/admin/manageTask">
-                    <FaTasks></FaTasks>
-                    Manage  Task </NavLink>
-            </li>
-            <li>
                 <NavLink to="/dashboard/admin/manageUser">
                     <FaUser></FaUser>
                     Manage Users</NavLink>
+            </li>
+            <li>
+                <NavLink to="/dashboard/admin/manageTask">
+                    <FaTasks></FaTasks>
+                    Manage  Task </NavLink>
             </li>
         </div>
     );
