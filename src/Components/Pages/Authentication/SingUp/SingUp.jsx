@@ -20,6 +20,7 @@ const SingUp = () => {
     );
 
 
+
     const onSubmit = (data, e) => {
         e.preventDefault();
 

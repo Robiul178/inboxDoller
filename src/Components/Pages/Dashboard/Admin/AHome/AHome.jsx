@@ -57,7 +57,7 @@ const AHome = () => {
     return (
         <div className="p-8">
             <div className="flex justify-between text-lg font-semibold border p-4">
-                <h2>Total Users :{serverUsers.length}</h2>
+                <h2>Total Users :{serverUsers?.length}</h2>
                 <h2>Total Coin :{coin}</h2>
                 <h2>Total Payment : ${totalPayment}</h2>
             </div>
