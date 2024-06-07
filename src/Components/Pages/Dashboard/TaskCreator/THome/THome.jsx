@@ -30,6 +30,7 @@ const THome = () => {
 
     //loading
     if (isLoading) return <p className="progress progress-primary w-12"></p>
+
     return (
         <div className="p-6">
             <div className="flex justify-between border p-2">

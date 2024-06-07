@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import useAllUsers from "../../../../Hooks/useAllUsers";
 import useCoin from "../../../../Hooks/useCoin";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import Swal from 'sweetalert2'
 
 const AHome = () => {
 
-    const [serverUser] = useAllUsers();
+    const [serverUsers] = useAllUsers();
     const [coin] = useCoin();
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const { data: payments } = useQuery({
         queryKey: ['payments'],
@@ -17,7 +19,7 @@ const AHome = () => {
             return res.data
         }
     });
-    const { data: withdrawCollection } = useQuery({
+    const { data: withdrawCollection, refetch } = useQuery({
         queryKey: ['withdrawCollection'],
         queryFn: async () => {
             const res = await axiosSecure.get('/withdrawCollection')
@@ -29,10 +31,33 @@ const AHome = () => {
         return accumulator + parseInt(task.amount);
     }, 0);
 
+    const handlePaymentSuccess = (withdrawData) => {
+
+        const requesWithdrawCoin = withdrawData?.withdraw_coin;
+        const WorkerEmail = withdrawData?.worker_email;
+
+        axiosSecure.delete(`/withdrawDelete/${withdrawData._id}`)
+            .then(res => {
+                if (res.data) {
+
+                    const serverUserCoin = serverUsers?.find(u => u.user?.email === WorkerEmail);
+                    const userCoin = serverUserCoin.coin;
+                    const newCoin = userCoin - requesWithdrawCoin;
+
+                    axiosPublic.put(`/user/newCoin/${WorkerEmail}`, { newCoin })
+                        .then(res => {
+                            if (res.data.modifiedCount > 0) {
+                                refetch()
+                            }
+                        })
+                }
+            })
+    }
+
     return (
         <div className="p-8">
             <div className="flex justify-between text-lg font-semibold border p-4">
-                <h2>Total Users :{serverUser.length}</h2>
+                <h2>Total Users :{serverUsers.length}</h2>
                 <h2>Total Coin :{coin}</h2>
                 <h2>Total Payment : ${totalPayment}</h2>
             </div>
@@ -48,9 +73,9 @@ const AHome = () => {
                             <th>Acount Number</th>
                             <th>Payment System</th>
                             <th>Withdraw Time</th>
+                            <th>Withdraw Coin</th>
                         </tr>
                     </thead>
-
 
                     <tbody>
                         {withdrawCollection?.map((task, index) => (
@@ -73,6 +98,12 @@ const AHome = () => {
                                 </td>
                                 <td className="p-3">
                                     {task.withdraw_time}
+                                </td>
+                                <td className="p-3">
+                                    {task.withdraw_coin}
+                                </td>
+                                <td className="p-3">
+                                    <button onClick={() => handlePaymentSuccess(task)} className="btn btn-outline border-r-0 border"> Payment Success</button>
                                 </td>
                             </tr>
                         ))}

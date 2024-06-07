@@ -5,6 +5,7 @@ import useCoin from "../../../../Hooks/useCoin";
 import { useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import useAllUsers from "../../../../Hooks/useAllUsers";
 
 
 const AddNewTask = () => {
@@ -14,6 +15,7 @@ const AddNewTask = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
+    const [serverUsers] = useAllUsers();
 
     //form handle
     const { register, handleSubmit, reset } = useForm();
@@ -25,7 +27,9 @@ const AddNewTask = () => {
 
     const onSubmit = (data, e) => {
         e.preventDefault();
+
         const totalCost = taskQuantity * paybleAmmount;
+
 
         if (totalCost < coin) {
             const postData = {
@@ -40,15 +44,22 @@ const AddNewTask = () => {
                 creator_email: user?.email,
                 currentTime: new Date().toISOString()
             }
+            console.table(postData);
             axiosSecure.post('/tasks', postData)
                 .then(res => {
+                    console.log(res.data);
                     if (res.data.insertedId) {
-                        axiosPublic.put(`/users/updateCoin/${user?.email}`, { totalCost })
-                            .then(res => {
-                                if (res.data.modifiedCount > 0) {
 
-                                    Swal.fire("TAsk Addes Successfully");
-                                    reset();
+                        const userEmail = user?.email;
+                        const serverUserCoin = serverUsers?.find(u => u.user?.email === userEmail);
+                        const userCoin = serverUserCoin.coin;
+                        const newCoin = userCoin - totalCost;
+
+                        axiosPublic.put(`/user/newCoin/${user?.email}`, { newCoin })
+                            .then(res => {
+                                console.log(res.data);
+                                if (res.data.modifiedCount > 0) {
+                                    Swal.fire('Done! Task added successfully')
                                 }
                             })
                     }
@@ -117,7 +128,7 @@ const AddNewTask = () => {
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">
-                                Completion Date
+                                Photo url
                             </span>
                         </label>
                         <input type="text" {...register('photo')} placeholder="task photo url" className="input input-bordered w-full" />

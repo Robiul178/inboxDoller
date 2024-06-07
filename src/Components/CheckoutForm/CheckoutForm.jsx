@@ -75,7 +75,6 @@ const CheckoutForm = ({ coinPrice, coinAmmount }) => {
         if (confirmError) {
             console.log('confirmError', confirmError)
         } else {
-            console.log('paymentIntent', paymentIntent);
             if (paymentIntent.id) {
                 const paymentInfo = {
                     payment_id: paymentIntent.id,
