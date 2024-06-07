@@ -1,7 +1,7 @@
 
 
 const Modal = ({ modalData }) => {
-    console.log(modalData);
+    console.log('form modal', modalData);
     return (
         <div>
             {/* You can open the modal using document.getElementById('ID').showModal() method */}

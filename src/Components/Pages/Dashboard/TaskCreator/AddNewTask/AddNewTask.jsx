@@ -29,8 +29,6 @@ const AddNewTask = () => {
         e.preventDefault();
 
         const totalCost = taskQuantity * paybleAmmount;
-
-
         if (totalCost < coin) {
             const postData = {
                 task_title: data.task_title,
@@ -44,7 +42,6 @@ const AddNewTask = () => {
                 creator_email: user?.email,
                 currentTime: new Date().toISOString()
             }
-            console.table(postData);
             axiosSecure.post('/tasks', postData)
                 .then(res => {
                     console.log(res.data);

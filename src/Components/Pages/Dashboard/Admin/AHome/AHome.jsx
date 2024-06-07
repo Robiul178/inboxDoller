@@ -74,6 +74,7 @@ const AHome = () => {
                             <th>Payment System</th>
                             <th>Withdraw Time</th>
                             <th>Withdraw Coin</th>
+                            <th>Action Buttons</th>
                         </tr>
                     </thead>
 
@@ -103,7 +104,7 @@ const AHome = () => {
                                     {task.withdraw_coin}
                                 </td>
                                 <td className="p-3">
-                                    <button onClick={() => handlePaymentSuccess(task)} className="btn btn-outline border-r-0 border"> Payment Success</button>
+                                    <button onClick={() => handlePaymentSuccess(task)} className="p-2 border"> Payment Success</button>
                                 </td>
                             </tr>
                         ))}

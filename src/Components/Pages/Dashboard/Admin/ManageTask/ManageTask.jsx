@@ -2,14 +2,14 @@
 import useTasks from "../../../../Hooks/useTasks";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import Modal from "./Modal";
-import { useState } from "react";
+// import Modal from "./Modal";
+// import { useState } from "react";
 
 
 const ManageTask = () => {
     const [tasks, refetch] = useTasks();
     const axiosSecure = useAxiosSecure();
-    const [modalData, setModalData] = useState()
+    // const [modalData, setModalData] = useState()
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/task/myTask/${id}`)
@@ -20,8 +20,7 @@ const ManageTask = () => {
                 }
             })
     };
-
-    console.log(modalData);
+    // console.log(modalData);
     return (
         <div>
             Tolat : {tasks?.length}
@@ -62,18 +61,14 @@ const ManageTask = () => {
                                 </td>
                                 <td className="p-3 ">
                                     <button onClick={() => handleDelete(task._id)} className="border px-4 py-2 hover:bg-red-500"> Remove</button>
-                                    <button onClick={setModalData(task)}>
+                                    {/* <button onClick={setModalData(task)}>
                                         <button className="border px-4 py-2 hover:bg-green-500" onClick={() => document.getElementById('my_modal_3').showModal()}>View Details</button>
-                                    </button>
+                                    </button> */}
                                 </td>
                             </tr>
-
                         ))}
                     </tbody>
                 </table>
-                <Modal
-                    modalData={modalData}
-                ></Modal>
             </div>
         </div>
     );

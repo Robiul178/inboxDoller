@@ -1,18 +1,13 @@
 import { FaTrash } from "react-icons/fa";
 import useAllUsers from "../../../../Hooks/useAllUsers";
-import { useState } from "react";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import Swal from 'sweetalert2'
-import useAuth from "../../../../Hooks/useAuth";
+import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-    const [selectedOption, setSelectedOption] = useState(null);
     const [serverUsers, refetch] = useAllUsers();
     const axiosPublic = useAxiosPublic();
-    const { user } = useAuth()
 
     const worker = serverUsers?.filter(w => w.user?.userRole?.value === 'worker');
-
 
     const handleDelete = (id) => {
         axiosPublic.delete(`/deleteUser/${id}`)
@@ -23,19 +18,19 @@ const ManageUsers = () => {
                     Swal.fire('Deleted')
                 }
             })
-    }
-    const handleUserRole = (task) => {
+    };
 
-        console.log(task, selectedOption);
+    const handleUserRole = (userEmail, newRole) => {
 
-        // axiosPublic.put(`/user/newRoin/${worker?.worker_email}`, { selectedOption })
-        //     .then(res => {
-        //         console.log(res.data);
-        //         // if (res.data.modifiedCount > 0) {
-        //         //     Swal.fire('Done! Task added successfully')
-        //         // }
-        //     })
+        axiosPublic.put(`/user/newRole/${userEmail}`, { newRole })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire('User Role Updated');
+                    refetch();
+                }
+            })
     }
+
 
     return (
         <div>
@@ -75,27 +70,17 @@ const ManageUsers = () => {
                                     {task.user.picture.split('.', 2)}
                                 </td>
                                 <td className="p-3 ">
-                                    <button onClick={() => handleDelete(task._id)}> <FaTrash className="text-[15px] mr-2" /></button>
-                                    <button onClick={() => handleUserRole(task)} className="dropdown dropdown-hover">
-                                        <div tabIndex={0} role="button" className="btn m-1 btn-outline border-r-none ">Update Role</div>
-                                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                            <li>
-                                                <h2 onClick={() => setSelectedOption('admin')}>Admin</h2>
-                                            </li>
-                                            <li>
-                                                <h2 onClick={() => setSelectedOption('taskCreator')}>Task Creator</h2>
-                                            </li>
-                                            <li>
-                                                <h2 onClick={() => setSelectedOption('worker')}>Worker</h2>
-                                            </li>
-
-                                        </ul>
-                                    </button>
+                                    <button className="border p-2" onClick={() => handleDelete(task._id)}> Remove</button>
+                                    <select className="border p-2" defaultValue='Select User ROle' onChange={(e) => handleUserRole(task.user?.email, e.target.value)}>
+                                        <option className="font-semibold" value="" disabled>Update role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="taskCreator">Task-Creator</option>
+                                        <option value="worker">Worker</option>
+                                    </select>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
-
                 </table>
 
             </div>
