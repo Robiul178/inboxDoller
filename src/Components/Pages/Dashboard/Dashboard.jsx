@@ -10,7 +10,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 const Dashboard = () => {
     const { user, logOutUser } = useAuth();
     const [serverUsers] = useAllUsers();
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     const userEmail = user?.email;
     const users = serverUsers?.find(u => u.user.email === userEmail)
@@ -19,7 +19,7 @@ const Dashboard = () => {
     const handleLogOut = () => {
         logOutUser()
             .then(() => {
-                Navigate('/')
+                navigate('/')
             })
 
     }

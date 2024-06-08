@@ -8,9 +8,8 @@ const Navbar = () => {
     const { user, logOutUser } = useAuth();
     const [serverUsers] = useAllUsers();
 
-    const currentUser = user?.email;
-    const roleUser = serverUsers?.find(t => t.user.email == currentUser);
-    const role = roleUser.user.userRole.value;
+    const roleUser = serverUsers?.find(t => t.user.email == user?.email);
+    const role = roleUser?.user?.userRole?.value;
 
 
     const links = <>
