@@ -27,7 +27,7 @@ const SingIn = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 if (user) {
-                    navigate('/dashboard')
+                    navigate('/')
                     Swal.fire({
                         title: "Log In?",
                         text: "Log in Successfully!",
@@ -71,37 +71,32 @@ const SingIn = () => {
 
 
     return (
-        <div>
+        <div className="mb-10">
             <div className="text-center">
-                <h2 className="text-3xl font-bold font-serif ">SIng In</h2>
+                <h2 className="text-3xl font-bold font-serif ">Start earning online</h2>
+                <p>Welcome to InboxDoller</p>
             </div>
 
             <div className='w-[700px] mx-auto'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="card-body">
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" placeholder="email" name='email' {...register("email")} className="input input-bordered" required />
+                    <div className="form-control ">
+                        <input type="email" placeholder="Email" name='email' {...register("email")} className="input input-bordered shadow-md" required />
                     </div>
 
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type="password" name='password' placeholder="password" {...register("password")} className="input input-bordered" required />
+                        <input type="password" name='password' placeholder="Password" {...register("password")} className="input input-bordered shadow-md" required />
                         <label className="label">
                             {errors.exampleRequired && <span>This field is required</span>}
                         </label>
                     </div>
 
-                    <Link to='/singup' className="underline text-blue-800 border p-2 rounded-sm text-center">
+                    <Link to='/singup' className="underline text-blue-800 border p-2 rounded-sm text-center shadow-md">
                         Please click here for Sing Up
                     </Link>
 
-                    <div className="form-control mt-6">
+                    <div className="form-control mt-6 shadow-md">
                         <button type='submit' className="btn btn-outline  btn-success border border-b-4">Sing Up</button>
                     </div>
 
@@ -109,7 +104,7 @@ const SingIn = () => {
                 <div className="flex justify-center items-center ">
                     <button
                         onClick={handleGoogleSingIn}
-                        className="w-[640px] btn btn-outline  btn-success border border-b-4"
+                        className="w-[640px] btn btn-outline  btn-success border border-b-4 shadow-md"
                     >
                         <FcGoogle />  Google Sing In
                     </button>

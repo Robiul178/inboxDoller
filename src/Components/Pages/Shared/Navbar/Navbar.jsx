@@ -1,11 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import { FaSignOutAlt } from "react-icons/fa";
+import { BiSolidDashboard } from "react-icons/bi";
 import useAllUsers from "../../../Hooks/useAllUsers";
-
 
 const Navbar = () => {
     const { user, logOutUser } = useAuth();
-    const [serverUsers] = useAllUsers()
+    const [serverUsers] = useAllUsers();
+
+    const currentUser = user?.email;
+    const roleUser = serverUsers?.find(t => t.user.email == currentUser);
+    const role = roleUser.user.userRole.value;
+
 
     const links = <>
         <li>
@@ -37,12 +43,8 @@ const Navbar = () => {
             })
     }
 
-    // const userEmail = user?.email;
-    // const roleForUser = serverUsers?.find(i => i.user?.email === userEmail)
-    // const role = roleForUser.user?.userRole.value;
-
     return (
-        <div className="max-w-6xl mx-auto navbar bg-base-100">
+        <div className="max-w-7xl mx-auto navbar bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,19 +69,19 @@ const Navbar = () => {
                 <div>
                     {
                         user ? <>
-                            <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">User Profile</button>
-                            <Link
-                                //  to={`/dashboard/${role}/home`}
-                                to='/dashboard'
-                            >
-                                <button className="btn btn-outline border-0 border-b-4 border-blue-600 mr-4">Dashboard</button>
-                            </Link>
-                            <button onClick={handleLogOut} className="btn btn-outline border-0 border-b-4 border-blue-600">Log Out</button>
+                            <div className="flex">
+                                <Link
+                                    to={`/dashboard/${role}/home`}
+                                >
+                                    <button className="px-8 py-2 border border-blue-300 mr-4 flex"><BiSolidDashboard className="mt-1" /> Dashboard</button>
+                                </Link>
+                                <button onClick={handleLogOut} className="px-8 py-2 border border-blue-300 flex"> <FaSignOutAlt className="mt-1" /> Log Out</button>
+                            </div>
                         </>
                             :
                             <>
                                 <Link to='/singin' className="mr-4">
-                                    <button className="btn btn-outline  btn-success border border-b-4">Sing In</button>
+                                    <button className="px-8 py-2 border border-blue-300">Sing In</button>
                                 </Link>
                             </>
                     }

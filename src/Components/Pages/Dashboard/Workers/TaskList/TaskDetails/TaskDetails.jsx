@@ -38,7 +38,7 @@ const TaskDetails = () => {
         axiosSecure.post('/mysubmission', submission)
             .then(res => {
                 if (res.data.insertedId) {
-                    Swal.fire("sent sucessfully");
+                    Swal.fire("Submission Request Sent sucessfully");
                 }
             })
 

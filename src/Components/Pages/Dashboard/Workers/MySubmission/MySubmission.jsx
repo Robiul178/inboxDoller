@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
-import WHome from "../WHome/WHome";
 
 
 const MySubmission = () => {
@@ -23,8 +22,7 @@ const MySubmission = () => {
             <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Submission : {submissonTask?.length}</h2>
             <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
-
-                    <thead className="dark:bg-gray-300">
+                    <thead className="bg-sky-200">
                         <tr className="text-left">
                             <th className="p-3"></th>
                             <th className="p-3">Task Title</th>
@@ -36,7 +34,7 @@ const MySubmission = () => {
                     <tbody>
                         {
                             submissonTask?.map((task, index) => <tr key={task._id}
-                                className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                className="border-b border-opacity-20 ">
                                 <td className="p-3">
                                     <p>{index + 1}</p>
                                 </td>
@@ -57,9 +55,6 @@ const MySubmission = () => {
                     </tbody>
                 </table>
             </div>
-            <WHome
-                submissonTask={submissonTask}
-            ></WHome>
         </div>
     );
 };

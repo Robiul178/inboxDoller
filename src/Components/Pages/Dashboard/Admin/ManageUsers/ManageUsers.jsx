@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+
 import useAllUsers from "../../../../Hooks/useAllUsers";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import Swal from 'sweetalert2';

@@ -61,9 +61,7 @@ const ManageTask = () => {
                                 </td>
                                 <td className="p-3 ">
                                     <button onClick={() => handleDelete(task._id)} className="border px-4 py-2 hover:bg-red-500"> Remove</button>
-                                    {/* <button onClick={setModalData(task)}>
-                                        <button className="border px-4 py-2 hover:bg-green-500" onClick={() => document.getElementById('my_modal_3').showModal()}>View Details</button>
-                                    </button> */}
+
                                 </td>
                             </tr>
                         ))}

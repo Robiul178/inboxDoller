@@ -24,6 +24,8 @@ const SingUp = () => {
     const onSubmit = (data, e) => {
         e.preventDefault();
 
+        const role = data.userRole.value;
+
         axiosPublic.post('/users', data)
             .then(result => {
                 if (result.data.insertedId) {
@@ -31,7 +33,7 @@ const SingUp = () => {
                         .then(() => {
                             updateUserProfile(data.name, data.picture)
                                 .then(() => {
-                                    navigate('/');
+                                    navigate(`/dashboard/${role}/home`);
                                     Swal.fire({
                                         title: "Sing Up Successfully?",
                                         text: "Success?",
@@ -39,10 +41,9 @@ const SingUp = () => {
                                     });
                                     reset();
                                 })
-                                .catch(error => console.log(error))
+                                .catch(() => { })
                         })
-                        .catch(() => {
-                        });
+                        .catch(() => { });
                 }
             })
     };
@@ -76,56 +77,47 @@ const SingUp = () => {
 
     return (
         <div>
-            <div className="text-center">
-                <h2 className="text-3xl font-bold font-serif ">SIng Up</h2>
+            <div className="text-center ">
+                <h2 className="text-3xl font-bold font-serif ">Start earning online</h2>
+                <p>Welcome to InboxDoller</p>
             </div>
 
-            <div className='w-[700px] mx-auto'>
+            <div className='w-[700px] mx-auto mb-8'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="card-body">
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Name</span>
-                        </label>
-                        <input type="text" placeholder="Name" name='name' {...register("name")} className="input input-bordered w-full" required />
+                        <input type="text" placeholder="Your Name" name='name' {...register("name")} className="input input-bordered w-full shadow-md" required />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input type="email" placeholder="email" name='email' {...register("email")} className="input input-bordered" required />
+                        <input type="email" placeholder="Email" name='email' {...register("email")} className="input input-bordered shadow-md" required />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Profile Picture URL</span>
-                        </label>
-                        <input type="url" placeholder="URL" name='picture' {...register("picture")} className="input input-bordered" />
+                        <input type="url" placeholder="Your Profile Picture URL" name='picture' {...register("picture")} className="input input-bordered shadow-md" />
                     </div>
 
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Password</span>
-                        </label>
-                        <input type="password" name='password' placeholder="password" {...register("password")} className="input input-bordered" required />
+                        <input type="password" name='Password' placeholder="password" {...register("password")} className="input input-bordered shadow-md" required />
                         <label className="label">
                             {errors.exampleRequired && <span>This field is required</span>}
                         </label>
                     </div>
 
-                    <Controller
-                        name="userRole"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                options={[
-                                    { value: "worker", label: "Worker" },
-                                    { value: "taskCreator", label: "Task Creator" },
-                                ]}
-                            />
-                        )}
-                    />
+                    <div className="shadow-md">
+                        <Controller
+                            name="userRole"
+                            control={control}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    options={[
+                                        { value: "worker", label: "Worker" },
+                                        { value: "taskCreator", label: "Task Creator" },
+                                    ]}
+                                />
+                            )}
+                        />
+                    </div>
 
 
                     <div className="form-control mt-6">
@@ -133,7 +125,7 @@ const SingUp = () => {
                     </div>
 
                 </form>
-                <div className="flex justify-center items-center ">
+                <div className="flex justify-center items-center">
                     <button
                         onClick={handleGoogleSingIn}
                         className="w-[640px] btn btn-outline  btn-success border border-b-4"

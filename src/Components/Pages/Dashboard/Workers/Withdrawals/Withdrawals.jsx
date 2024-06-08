@@ -1,7 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select"
 import useAuth from "../../../../Hooks/useAuth";
-import { FaCoins } from "react-icons/fa";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import Swal from 'sweetalert2'
@@ -55,7 +54,7 @@ const Withdrawals = () => {
             axiosSecure.post('/withdraw', withdrawDetails)
                 .then(res => {
                     if (res.data.insertedId) {
-                        Swal.fire("With request successfull")
+                        Swal.fire("With request sent successfull")
                     }
                 })
 
@@ -67,58 +66,43 @@ const Withdrawals = () => {
 
     return (
         <div className="p-6">
-            <div className="flex justify-end">
-                <h2 className=" p-4 text-lg font-semibold shadow bg-green-300">
-                    <span className="flex">
-                        Total Coin : <FaCoins className="text-lg mt-1 mx-2" />  {coin}
-                    </span>
-                </h2>
-            </div>
-
             <div>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="card-body">
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text"> Coin To WithDraw </span>
-                        </label>
-                        <input type="text" onChange={handleChange} placeholder="Coin To WithDraw " className="input input-bordered w-full" />
+                        <input type="text" onChange={handleChange} placeholder="WithDraw Coin Ammoun " className="input input-bordered w-full shadow-md" />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Withdraw Amount:</span>
-                        </label>
                         <input
                             type="email"
                             placeholder={withdrawAmount}
                             {...register("withdrawAmmount")}
-                            className="input input-bordered" readOnly />
+                            className="input input-bordered shadow-md" readOnly />
                     </div>
 
-                    <Controller
-                        name="paymentMethod"
-                        control={control}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                options={[
-                                    { value: "BKash", label: "BKash" },
-                                    { value: "Rocket", label: "Rocket" },
-                                    { value: "Nagad", label: "Nagad" },
-                                ]}
-                            />
-                        )}
-                    />
+                    <div className="shadow-md">
+                        <Controller
+                            name="paymentMethod"
+                            control={control}
+                            render={({ field }) => (
+                                <Select
+                                    {...field}
+                                    options={[
+                                        { value: "BKash", label: "BKash" },
+                                        { value: "Rocket", label: "Rocket" },
+                                        { value: "Nagad", label: "Nagad" },
+                                    ]}
+                                />
+                            )}
+                        />
+                    </div>
 
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Account Numbe </span>
-                        </label>
-                        <input type="text" placeholder='Account Numbe' {...register("accountNumbe")} className="input input-bordered" />
+                        <input type="text" placeholder='Account Numbe' {...register("accountNumbe")} className="input input-bordered shadow-md" />
                     </div>
                     <div className="form-control mt-6">
-                        <button type='submit' className="btn btn-outline  btn-success border border-b-4">Withdraw</button>
+                        <button type='submit' className="btn bg-sky-200 ">Withdraw</button>
                     </div>
 
                 </form>
