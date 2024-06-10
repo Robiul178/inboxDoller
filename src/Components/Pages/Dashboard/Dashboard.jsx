@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Workers from "./Workers/Workers";
 import TaskCreator from "./TaskCreator/TaskCreator";
 import Admin from "./Admin/Admin";
@@ -27,7 +27,11 @@ const Dashboard = () => {
         <div className="flex">
             <div className="w-72 sticky top-1 min-h-screen bg-blue-100 text-black">
                 <ul className="menu p-6">
-                    <h2 className="text-3xl font-semibold">$ InboxDoller</h2>
+                    <div>
+                        <Link to='/'>
+                            <h2 className="text-xl font-bold">InboxDollars</h2>
+                        </Link>
+                    </div>
                     <div className="divider"></div>
                     {
                         userRole === 'worker' ? <> <Workers /> </> : '' || userRole === 'taskCreator' ? <> <TaskCreator /> </> : '' || userRole === 'admin' ? <> <Admin /> </> : ''

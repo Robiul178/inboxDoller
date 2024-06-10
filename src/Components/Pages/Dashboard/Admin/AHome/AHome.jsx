@@ -3,7 +3,6 @@ import useAllUsers from "../../../../Hooks/useAllUsers";
 import useCoin from "../../../../Hooks/useCoin";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import Swal from 'sweetalert2'
 
 const AHome = () => {
 
@@ -56,14 +55,20 @@ const AHome = () => {
 
     return (
         <div className="p-8">
-            <div className="flex justify-between text-lg font-semibold border p-4">
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Admin</a></li>
+                    <li>Home</li>
+                </ul>
+            </div>
+            <div className="flex justify-between text-lg font-semibold border p-4 shadow-md">
                 <h2>Total Users :{serverUsers?.length}</h2>
                 <h2>Total Coin :{coin}</h2>
                 <h2>Total Payment : ${totalPayment}</h2>
             </div>
 
             {/* table */}
-            <div className="overflow-x-auto mt-4">
+            <div className="overflow-x-auto mt-4 shadow-md">
                 <table className="min-w-full text-xs">
                     <thead className="">
                         <tr className="text-left">
@@ -104,7 +109,7 @@ const AHome = () => {
                                     {task.withdraw_coin}
                                 </td>
                                 <td className="p-3">
-                                    <button onClick={() => handlePaymentSuccess(task)} className="p-2 border"> Payment Success</button>
+                                    <button onClick={() => handlePaymentSuccess(task)} className=" p-2 border hover:bg-blue-500"> Payment Success</button>
                                 </td>
                             </tr>
                         ))}

@@ -9,6 +9,7 @@ const UpdateModal = ({ updatetask, refetch }) => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
+
     const onSubmit = (data) => {
         const updateInfo = {
             task_title: data.task_title,

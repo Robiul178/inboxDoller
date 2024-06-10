@@ -14,6 +14,12 @@ const PaymentHistory = () => {
         <div className="p-8">
             <div className="text-sm breadcrumbs">
                 <ul>
+                    <li><a>Task Creator</a></li>
+                    <li>Payment History</li>
+                </ul>
+            </div>
+            <div className="text-sm breadcrumbs">
+                <ul>
                     <li><a>Home</a></li>
                     <li><a>Task Creator</a></li>
                     <li> My Payment History</li>
@@ -27,7 +33,7 @@ const PaymentHistory = () => {
                 <div className="overflow-x-auto mt-4">
                     <table className="min-w-full text-xs">
                         <thead className="">
-                            <tr className="text-left">
+                            <tr className="text-left shadow-md">
                                 <th className="p-3"></th>
                                 <th>Name</th>
                                 <th>Email</th>

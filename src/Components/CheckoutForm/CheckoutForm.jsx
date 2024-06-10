@@ -13,7 +13,7 @@ import useAllUsers from '../Hooks/useAllUsers';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
-const CheckoutForm = ({ coinPrice, coinAmmount }) => {
+const CheckoutForm = ({ coin }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
@@ -21,7 +21,11 @@ const CheckoutForm = ({ coinPrice, coinAmmount }) => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [serverUsers, refetch] = useAllUsers();
+    console.log(coin, 'from coin');
 
+    let coinPrice = 10;
+
+    // if(coin=)
 
     useEffect(() => {
         fetch("http://localhost:5000/create-payment", {

@@ -1,29 +1,23 @@
-import { FaCheckSquare } from 'react-icons/fa';
-import findJob from '../../../../assets/find-jobs.png'
-import SectionTitle from '../../SectionTitle/SectionTitle';
+
 
 const FindJobs = () => {
     return (
-        <div className="max-w-6xl mx-auto my-24 px-4">
-            <SectionTitle
-                heading={"Earn Rewards"}
-            ></SectionTitle>
+        <div className="max-w-6xl mx-auto my-24 px-4 ">
+            <div>
+                <h2 className="text-[46px] text-blue-900 font-bold mb-4 text-center py-12">Turn your time into profit</h2>
+            </div>
             <div className="md:flex justify-center gap-12 ">
                 <div className="mb-6 ">
-                    <div className='h-[330px] bg-green-100'>
-                        <img src={findJob} alt="" className='relative top-4 p-6' />
-                    </div>
+                    <img src='https://zrcdn.net/static/img/index/the-flexible-solution-paidwork.webp?v=648' alt=""
+                        className='max-w-lg ' />
                 </div>
-                <div className="">
-                    <h1 className="text-4xl font-bold mb-4">Get more in less time</h1>
-                    <ul className='text-lg'>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' /> Target is the right Job</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Read job details and submit</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Do not submit wrong proof</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />To increase the employer's business</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Take any promotion</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Blog, application, social media etc</li>
-                    </ul>
+                <div className="mt-16">
+                    <h2 className="text-[46px] ">The flexible solution</h2>
+                    <h2 className="text-xl font-bold text-blue-700">Benifit</h2>
+                    <br />
+                    <p className="text-xl">
+                        InboxDoller is a full time or additional job for all people, from every country. You can earn money on any device with access to the internet, wherever you are. You will get paid for your time spent and engagement on the platform.
+                    </p>
                 </div>
             </div>
         </div>

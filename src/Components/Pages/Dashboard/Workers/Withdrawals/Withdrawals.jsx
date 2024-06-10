@@ -66,6 +66,9 @@ const Withdrawals = () => {
 
     return (
         <div className="p-6">
+            <div className="p-3 shadow-md">
+                <p className="text-3xl font-semibold">Maximun Withdraw Ammount: {maxWithdrawalAmount}</p>
+            </div>
             <div>
                 <form
                     onSubmit={handleSubmit(onSubmit)}

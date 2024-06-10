@@ -12,6 +12,8 @@ const SingIn = () => {
     const [serverUsers] = useAllUsers();
     const axiosPublic = useAxiosPublic();
 
+    console.log(serverUsers, 'serverUsers');
+
     const { register, handleSubmit, reset, formState: { errors }, } = useForm(
         {
             defaultValues: {

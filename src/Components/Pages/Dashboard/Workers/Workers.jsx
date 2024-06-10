@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Workers = () => {
     return (
-        <div>
+        <div className="text-xl">
             <li>
                 <NavLink to="/dashboard/worker/home">
                     <FaHome></FaHome>

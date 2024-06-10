@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SingUp = () => {
-    const { singUpUser, updateUserProfile, gooogleLogIn } = useAuth();
+    const { singUpUser, updateUserProfile, gooogleLogIn, setLoading } = useAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
 
@@ -40,6 +40,7 @@ const SingUp = () => {
                                         icon: "success"
                                     });
                                     reset();
+                                    setLoading(true)
                                 })
                                 .catch(() => { })
                         })

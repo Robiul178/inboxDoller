@@ -40,7 +40,6 @@ const MyTasks = () => {
         <div className="p-8">
             <div className="text-sm breadcrumbs">
                 <ul>
-                    <li><a>Home</a></li>
                     <li><a>Task Creator</a></li>
                     <li> My task</li>
                 </ul>

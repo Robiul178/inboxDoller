@@ -1,9 +1,13 @@
-
+import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useCoin from "../../../../Hooks/useCoin";
 import usePaymentHistory from "../../../../Hooks/usePaymentHistory";
+import { FaCoins } from "react-icons/fa";
+import { GrCompliance } from "react-icons/gr";
+import { MdPayments } from "react-icons/md";
+import { BsCashCoin } from "react-icons/bs";
 
 
 const THome = () => {
@@ -33,12 +37,35 @@ const THome = () => {
 
     return (
         <div className="p-6">
-            <div className="flex justify-between border p-2">
-                <h2 className="text-lg font-semibold p-2">Total Coin:{coin}</h2>
-                <h2 className="text-lg font-semibold p-2">Pending Task: {totalPendingTasks}</h2>
-                <h2 className="text-lg font-semibold p-2">Total Payment: {totalPayment}</h2>
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Task Creator</a></li>
+                    <li> Home</li>
+                </ul>
             </div>
 
+            <div className="flex justify-between">
+                <div className=" max-w-[450px] h-44 border rounded-md p-4 shadow-md w-full">
+                    <h2 className="text-xl font-bold flex"><FaCoins className=" text-xl mt-1" /> {coin}.0000</h2>
+                    <p>Total Coin</p>
+                    <div className="flex gap-4 mt-14">
+                        <Link to='/dashboard/taskCreator/puchaseCoin'>
+                            <button className="btn bg-sky-300  text-blue-600"><BsCashCoin className=" text-xl" />Puchase Coin</button>
+                        </Link>
+                        <Link to='/dashboard/taskCreator/pymentHistory'>
+                            <button className="btn bg-sky-300 text-blue-600"><MdPayments className=" text-xl" />Payment History</button>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className=" max-w-[300px] h-44 border rounded-md p-4 shadow-md w-full">
+                    <h2 className="text-xl font-bold flex">TPending Task: <GrCompliance className=" text-xl mt-1 mr-1" />  {totalPendingTasks}</h2>
+                </div>
+
+                <div className=" max-w-[300px] h-44 border rounded-md p-4 shadow-md w-full">
+                    <h2 className="text-xl font-bold flex">{totalPayment}</h2>
+                </div>
+            </div>
 
         </div>
     );

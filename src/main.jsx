@@ -30,6 +30,7 @@ import {
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Withdrawals from './Components/Pages/Dashboard/Workers/Withdrawals/Withdrawals';
 import PaymentMethod from './Components/PaymentMethod/PaymentMethod';
+import Error from './Components/Pages/Error/Error';
 
 
 
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Routes />,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
     </PrivateRoute>,
     children: [
       {
-        path: '/dashboard/payment',
+        path: '/dashboard/payment/:coin',
         element: <PaymentMethod />
       },
       {

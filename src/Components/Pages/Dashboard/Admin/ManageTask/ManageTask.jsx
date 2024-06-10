@@ -2,29 +2,31 @@
 import useTasks from "../../../../Hooks/useTasks";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-// import Modal from "./Modal";
-// import { useState } from "react";
+import Modal from "./Modal";
 
 
 const ManageTask = () => {
     const [tasks, refetch] = useTasks();
     const axiosSecure = useAxiosSecure();
-    // const [modalData, setModalData] = useState()
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/task/myTask/${id}`)
             .then(res => {
                 if (res.data.deletedCount > 0) {
-                    Swal.fire('Removed User')
-                    refetch()
+                    Swal.fire('Removed Task')
+                    refetch();
                 }
             })
     };
-    // console.log(modalData);
     return (
-        <div>
-            Tolat : {tasks?.length}
-            <div className="overflow-x-auto mt-4">
+        <div className="p-8">
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Admin</a></li>
+                    <li>Manage Tasks</li>
+                </ul>
+            </div>
+            <div className="overflow-x-auto mt-4 shadow-md">
                 <table className="min-w-full text-xs">
                     <thead className="">
                         <tr className="text-left">
@@ -68,6 +70,7 @@ const ManageTask = () => {
                     </tbody>
                 </table>
             </div>
+            <Modal></Modal>
         </div>
     );
 };

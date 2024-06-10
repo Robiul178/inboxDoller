@@ -1,15 +1,18 @@
 import { BsHouseAdd } from "react-icons/bs";
-import { FaHome, FaTasks } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { BsCashCoin } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import { VscTasklist } from "react-icons/vsc";
+import { MdPayments } from "react-icons/md";
 
 
 const TaskCreator = () => {
     return (
-        <div>
+        <div className="text-xl">
             <li>
                 <NavLink to="/dashboard/taskCreator/home">
                     <FaHome></FaHome>
-                    T-Home</NavLink>
+                    Home</NavLink>
             </li>
             <li>
                 <NavLink to="/dashboard/taskCreator/addtask">
@@ -18,17 +21,17 @@ const TaskCreator = () => {
             </li>
             <li>
                 <NavLink to="/dashboard/taskCreator/mytask">
-                    <FaTasks></FaTasks>
+                    <VscTasklist></VscTasklist>
                     My Tasks</NavLink>
             </li>
             <li>
                 <NavLink to="/dashboard/taskCreator/puchaseCoin">
-                    <FaTasks></FaTasks>
+                    <BsCashCoin></BsCashCoin>
                     Purchase Coin</NavLink>
             </li>
             <li>
                 <NavLink to="/dashboard/taskCreator/pymentHistory">
-                    <FaTasks></FaTasks>
+                    <MdPayments></MdPayments>
                     Payment History</NavLink>
             </li>
         </div>

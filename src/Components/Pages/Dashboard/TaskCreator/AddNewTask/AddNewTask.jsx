@@ -18,7 +18,7 @@ const AddNewTask = () => {
     const [serverUsers] = useAllUsers();
 
     //form handle
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const handleQuantity = (event) => { setTaskQuntity(event.target.value) };
     const handlePaybleAmmount = (event) => { setPaybleAmmount(event.target.value) };
@@ -75,7 +75,6 @@ const AddNewTask = () => {
         <div>
             <div className="text-sm breadcrumbs">
                 <ul>
-                    <li><a>Home</a></li>
                     <li><a>Task Creator</a></li>
                     <li> Add new Task</li>
                 </ul>
@@ -85,66 +84,37 @@ const AddNewTask = () => {
                 className="card-body">
                 <div className=" grid grid-cols-2 gap-6 ">
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Task Title</span>
-                        </label>
-                        <input type="text" {...register('task_title')} placeholder="Task title" className="input input-bordered w-full" />
+                        <input type="text" {...register('task_title')} placeholder="Task title" className="input input-bordered w-full shadow-md" />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Task Quantity</span>
-                        </label>
-                        <input type="text" onChange={handleQuantity} placeholder="task quantity" className="input input-bordered w-full" />
+                        <input type="text" onChange={handleQuantity} placeholder="Task quantity" className="input input-bordered w-full shadow-md" />
                     </div>
                 </div>
 
                 <div className=" grid grid-cols-2 gap-6 ">
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text"> Payable Amount (Per Task)</span>
-                        </label>
-                        <input type="text" onChange={handlePaybleAmmount} placeholder="payble ammount " className="input input-bordered w-full" />
+                        <input type="text" onChange={handlePaybleAmmount} placeholder="Payble ammount " className="input input-bordered w-full shadow-md" />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">
-                                Completion Date
-                            </span>
-                        </label>
-                        <input type="date" {...register('completion_date')} placeholder="completion_date" className="input input-bordered w-full" />
+                        <input type="date" {...register('completion_date')} placeholder="Task completion date" className="input input-bordered w-full shadow-md" />
                     </div>
                 </div>
 
                 <div className=" grid grid-cols-2 gap-6 ">
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Submission Info</span>
-                        </label>
-                        <input type="text" {...register('submission_info')} placeholder="Submission Info" className="input input-bordered w-full" />
+                        <input type="text" {...register('submission_info')} placeholder="Submission Info" className="input input-bordered w-full shadow-md" />
                     </div>
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">
-                                Photo url
-                            </span>
-                        </label>
-                        <input type="text" {...register('photo')} placeholder="task photo url" className="input input-bordered w-full" />
+                        <input type="text" {...register('photo')} placeholder="Task photo url" className="input input-bordered w-full shadow-md" />
                     </div>
                 </div>
-
-
 
                 <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Task Details</span>
-                    </label>
-                    <textarea placeholder="Task Details....." {...register('task_details')} className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                    <textarea placeholder="Task Details....." {...register('task_details')} className="textarea shadow-md textarea-bordered textarea-lg w-full" ></textarea>
                 </div>
 
-
-
                 <div className="form-control mt-6">
-                    <button type='submit' className="btn btn-outline  btn-success border border-b-4">Add Task</button>
+                    <button type='submit' className="btn btn-outline  btn-info border border-b-4">Add Task</button>
                 </div>
 
             </form>

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const Admin = () => {
     return (
-        <div>
+        <div className="text-xl">
             <li>
                 <NavLink to="/dashboard/admin/home">
                     <FaHome></FaHome>

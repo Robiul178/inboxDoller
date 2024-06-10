@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
 import useAuth from "../../../../../Hooks/useAuth";
+import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 
 const TaskDetails = () => {
     const { user } = useAuth()
@@ -11,6 +12,7 @@ const TaskDetails = () => {
     const { id } = useParams()
     const [submissionDetails, setSubmissionDetails] = useState('');
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     const detailTask = tasks?.find(task => task._id === id);
 
@@ -33,12 +35,26 @@ const TaskDetails = () => {
             current_date: new Date().toISOString().split('T')[0],
             status: 'pending',
         };
+
         setSubmissionDetails('');
 
         axiosSecure.post('/mysubmission', submission)
             .then(res => {
                 if (res.data.insertedId) {
-                    Swal.fire("Submission Request Sent sucessfully");
+                    const workerEmail = user?.email;
+                    const notification = {
+                        message: ` you have earned ${detailTask.payable_amount} from ${detailTask.creator_name} for completing ${detailTask.task_title}`,
+                        ToEmail: { workerEmail },
+                        Time: new Date()
+                    };
+
+                    axiosPublic.post('/notification', notification)
+                        .then(res => {
+                            console.log(res.data);
+                        })
+
+
+                    // Swal.fire("Submission Request Sent sucessfully");
                 }
             })
 

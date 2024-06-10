@@ -1,24 +1,18 @@
-import { FaCheckSquare } from "react-icons/fa";
-import imggg from '../../../../assets/newww.png'
+
 
 const Exchange = () => {
     return (
-        <div className=" bg-[#FDF2ED] py-36">
-            <div className="max-w-6xl mx-auto flex">
-                <div>
-                    <h2 className="text-4xl font-bold">Exchange online service at InboxDollers</h2>
-                    <ul className='text-lg mt-4'>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' /> Target is the right Job</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Read job details and submit</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Do not submit wrong proof</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />To increase the employer's business</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Take any promotion</li>
-                        <li className='flex gap-1'><FaCheckSquare className='text-green-600 mt-1' />Blog, application, social media etc</li>
-                    </ul>
-                    <button className="btn btn-outline  btn-success border border-b-4 mt-3">Get Start</button>
+        <div className="max-w-6xl mx-auto my-24 px-4 " >
+            <div className="md:flex justify-center gap-12 ">
+                <div className="mt-16">
+                    <h2 className="text-[46px] ">Everything under control</h2>
+                    <h2 className="text-xl font-bold text-blue-700">How It Works</h2>
+                    <br />
+                    <p className="text-xl">You can choose how you want to earn money – by playing games, completing surveys, watching videos, shopping online and creating accounts.</p>
                 </div>
-                <div>
-                    <img src={imggg} alt="" />
+                <div className="mb-6 ">
+                    <img src='https://zrcdn.net/static/img/index/everything-under-control-paidwork.webp?v=648' alt=""
+                        className='max-w-lg ' />
                 </div>
             </div>
         </div>

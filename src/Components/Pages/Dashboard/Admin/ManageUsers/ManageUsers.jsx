@@ -12,7 +12,6 @@ const ManageUsers = () => {
     const handleDelete = (id) => {
         axiosPublic.delete(`/deleteUser/${id}`)
             .then(res => {
-                console.log(res.data);
                 if (res.data.deletedCount > 0) {
                     refetch()
                     Swal.fire('Deleted')
@@ -33,8 +32,14 @@ const ManageUsers = () => {
 
 
     return (
-        <div>
-            <div className="overflow-x-auto mt-8">
+        <div className="p-8">
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Admin</a></li>
+                    <li>Manage Users</li>
+                </ul>
+            </div>
+            <div className="overflow-x-auto mt-8 shadow-md">
                 <table className="min-w-full text-xs">
                     <thead className="">
                         <tr className="text-left">
@@ -69,8 +74,8 @@ const ManageUsers = () => {
                                 <td className="p-3">
                                     {task.user.picture.split('.', 2)}
                                 </td>
-                                <td className="p-3 ">
-                                    <button className="border p-2" onClick={() => handleDelete(task._id)}> Remove</button>
+                                <td className="p-3 flex gap-2">
+                                    <button className="border p-2 hover:bg-sky-200" onClick={() => handleDelete(task._id)}> Remove</button>
                                     <select className="border p-2" defaultValue='Select User ROle' onChange={(e) => handleUserRole(task.user?.email, e.target.value)}>
                                         <option className="font-semibold" value="" disabled>Update role</option>
                                         <option value="admin">Admin</option>

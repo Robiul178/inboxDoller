@@ -27,6 +27,12 @@ const WHome = () => {
 
     return (
         <section className="p-12">
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Worker</a></li>
+                    <li> Home</li>
+                </ul>
+            </div>
             <div className="flex justify-between">
                 <div className=" max-w-[450px] h-44 border rounded-md p-4 shadow-md">
                     <h2 className="text-xl font-bold flex"><FaCoins className=" text-xl mt-1" /> {coin}.0000</h2>

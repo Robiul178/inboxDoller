@@ -1,55 +1,38 @@
-
-import { useState } from 'react';
-import PaymentModal from './PaymentModal/PaymentModal';
-// import useCoin from '../../../../Hooks/useCoin';
+import { useNavigate } from "react-router-dom";
 
 
 const PurchaseCoin = () => {
-    const [coinPrice, setCoinPrice] = useState();
-    const [coinAmmount, setCoinAmmount] = useState()
-    // const [coin] = useCoin();
+    const navigate = useNavigate()
+    const data = [
+        { coin: 10, doller: 1 },
+        { coin: 100, doller: 9 },
+        { coin: 500, doller: 19 },
+        { coin: 1000, doller: 39 },
+    ];
+
+    const handleBuyCoin = (coin) => {
+        navigate(`/dashboard/payment/${coin}`)
+    }
 
     return (
-        <div className="p-8">
-            <div className="my-6">
-                <h2 className="text-xl font-bold">Purchase Coin</h2>
-            </div>
-            <div className=" flex justify-between">
-
-                <div onClick={() => setCoinPrice(1)} className="  text-green-700 border inline-block p-4">
-                    <div onClick={() => setCoinAmmount(10)} className="card-body">
-                        <h2 className="card-title">10 coins = $1 dollar</h2>
-                        <button className="btn rounded-none border btn-outline" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
-                    </div>
-                </div>
-
-                <div onClick={() => setCoinPrice(9)} className="  text-green-700 border inline-block p-4">
-                    <div onClick={() => setCoinAmmount(100)} className="card-body">
-                        <h2 className="card-title">100 coins = $9 dollar</h2>
-                        <button className="btn rounded-none border btn-outline" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
-                    </div>
-                </div>
-
-                <div onClick={() => setCoinPrice(19)} className="  text-green-700 border inline-block p-4">
-                    <div onClick={() => setCoinAmmount(500)} className="card-body">
-                        <h2 className="card-title">500 coins = $19 dollar</h2>
-                        <button className="btn rounded-none border btn-outline" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
-                    </div>
-                </div>
-                <div onClick={() => setCoinPrice(39)} className="  text-green-700 border inline-block p-4">
-                    <div onClick={() => setCoinAmmount(500)} className="card-body">
-                        <h2 className="card-title">1000 coins = $39 dollar</h2>
-                        <button className="btn rounded-none border btn-outline" onClick={() => document.getElementById('my_modal_2').showModal()}>Buy Now</button>
-                    </div>
-                </div>
-
-
+        <div >
+            <div className="text-sm breadcrumbs">
+                <ul>
+                    <li><a>Task Creator</a></li>
+                    <li>Purchase Coin</li>
+                </ul>
             </div>
             <div>
-                <PaymentModal
-                    coinPrice={coinPrice}
-                    coinAmmount={coinAmmount}
-                ></PaymentModal>
+                {
+                    data.map(d => <>
+                        <div className="card-body">
+                            <h2 className="card-title">{d.coin} coins = ${d.doller} dollar</h2>
+                            <button
+                                onClick={() => handleBuyCoin(d.coin)}
+                                className="btn rounded-none border btn-outline">Buy Now</button>
+                        </div>
+                    </>)
+                }
             </div>
         </div>
     );
