@@ -40,7 +40,6 @@ const SingUp = () => {
                                         icon: "success"
                                     });
                                     reset();
-                                    setLoading(true)
                                 })
                                 .catch(() => { })
                         })

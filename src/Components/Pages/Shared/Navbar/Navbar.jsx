@@ -23,16 +23,6 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
-        <li>
-            <NavLink
-                to="/about"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "border border-gray-500 px-4 py-2" : ""
-                }
-            >
-                About
-            </NavLink>
-        </li>
     </>
 
     const handleLogOut = () => {
@@ -80,9 +70,11 @@ const Navbar = () => {
                             </>
                                 :
                                 <>
-                                    <Link to='/singin' className="mr-4">
-                                        <button className="px-8 py-2 border border-blue-300">Sing In</button>
-                                    </Link>
+                                    <div>
+                                        <Link to='/singin' className="mr-4">
+                                            <button className="px-8 py-2 border border-blue-300">Sing In</button>
+                                        </Link>
+                                    </div>
                                 </>
                         }
                     </div>
