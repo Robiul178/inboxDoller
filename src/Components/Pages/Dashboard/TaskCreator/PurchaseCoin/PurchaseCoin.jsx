@@ -11,7 +11,7 @@ const PurchaseCoin = () => {
     ];
 
     const handleBuyCoin = (coin) => {
-        navigate(`/dashboard/payment/${coin}`)
+        navigate(`/dashboard/payment/${coin}`);
     }
 
     return (

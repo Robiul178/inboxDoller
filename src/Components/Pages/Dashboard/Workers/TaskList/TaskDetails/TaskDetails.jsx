@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useTasks from "../../../../../Hooks/useTasks";
 import { useState } from "react";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
-import Swal from 'sweetalert2';
+import Countdown from 'react-countdown';
 import useAuth from "../../../../../Hooks/useAuth";
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
 
@@ -53,8 +53,6 @@ const TaskDetails = () => {
                             console.log(res.data);
                         })
 
-
-                    // Swal.fire("Submission Request Sent sucessfully");
                 }
             })
 
@@ -65,6 +63,17 @@ const TaskDetails = () => {
         return <div className="text-center text-red-500">Task not found</div>;
     }
 
+    const Completionist = () => <span>You are good to go!</span>;
+
+    // Renderer callback with condition
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            return <Completionist />;
+        } else {
+            return <span>{hours}:{minutes}:{seconds}</span>;
+        }
+    };
+
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white rounded shadow-lg mt-8">
             <h2 className="text-3xl font-bold mb-4">{detailTask?.task_title}</h2>
@@ -73,6 +82,14 @@ const TaskDetails = () => {
             <p className="mb-2"><strong>Payable Amount:</strong> ${detailTask?.payable_amount}</p>
             <p className="mb-2"><strong>Quantity:</strong> {detailTask?.task_quantity}</p>
             <p className="mb-4"><strong>Description:</strong> {detailTask?.description}</p>
+
+            <div className="border p-2">
+                <p className="text-xl font-bold">Remaining Time:</p>
+                <Countdown
+                    date={Date.now() + 100000000}
+                    renderer={renderer}
+                />
+            </div>
 
             <form
                 onSubmit={handleSubmit}

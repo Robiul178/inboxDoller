@@ -21,14 +21,11 @@ const CheckoutForm = ({ coin }) => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [serverUsers, refetch] = useAllUsers();
-    console.log(coin, 'from coin');
 
-    let coinPrice = 10;
-
-    // if(coin=)
+    let coinPrice = parseInt(coin?.coin);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment", {
+        fetch("https://earning-server.vercel.app/create-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ coinPrice }),
@@ -94,7 +91,8 @@ const CheckoutForm = ({ coin }) => {
                             const userEmail = user?.email;
                             const serverUserCoin = serverUsers?.find(u => u.user?.email === userEmail);
                             const userCoin = serverUserCoin.coin;
-                            const newCoin = userCoin + coinAmmount;
+                            const newCoin = userCoin + coinPrice;
+                            console.log(newCoin);
                             axiosPublic.put(`/user/newCoin/${user?.email}`, { newCoin })
                                 .then(res => {
                                     if (res.data.modifiedCount > 0) {

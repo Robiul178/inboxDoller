@@ -20,7 +20,11 @@ const WHome = () => {
         }
     });
 
-    const approveData = submissonTask?.filter(task => task.status === 'approved')
+    const approveData = submissonTask?.filter(task => task.status === 'approved');
+
+    const totalPaybleAmmount = approveData?.reduce((accumulator, task) => {
+        return accumulator + parseInt(task.payable_amount);
+    }, 0);
 
     if (isLoading) return <p className="progress progress-primary w-12"></p>
 
@@ -54,7 +58,7 @@ const WHome = () => {
                 </div>
 
                 <div className=" max-w-[300px] h-44 border rounded-md p-4 shadow-md">
-                    <h2 className="text-xl font-bold flex">sum of payable_amoun of the worker where status is approved</h2>
+                    <h2 className="text-xl font-bold flex">Payable Amoun: {totalPaybleAmmount}</h2>
 
                 </div>
             </div>

@@ -25,7 +25,7 @@ const Dashboard = () => {
     }
     return (
         <div className="flex">
-            <div className="w-72 sticky top-1 min-h-screen bg-blue-100 text-black">
+            <div className="max-w-72 sticky top-1 min-h-screen bg-blue-100 text-black">
                 <ul className="menu p-6">
                     <div>
                         <Link to='/'>

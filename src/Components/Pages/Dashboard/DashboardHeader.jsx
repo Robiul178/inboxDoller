@@ -16,7 +16,10 @@ const DashboardHeader = () => {
 
     })
 
-    const bydescending = notifications?.sort((a, b) => new Date(a.Time) - new Date(b.Time));
+    const bydescending = notifications?.sort((a, b) => {
+        new Date(a.Time) - new Date(b.Time)
+        refetch()
+    });
 
     return (
         <div className="flex justify-between py-5 px-8 bg-blue-100">

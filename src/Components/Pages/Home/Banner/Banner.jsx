@@ -19,7 +19,7 @@ const Banner = () => {
             className="mySwiper max-w-7xl mx-auto mt-12"
         >
             <SwiperSlide>
-                <div className='flex justify-between px-16'>
+                <div className='md:flex justify-between px-16'>
                     <div className='mt-28'>
                         <h2 className="text-6xl font-bold text-blue-900 mb-4">Make money online</h2>
                         <p className='text-xl pt-4 '> InboxDollars is an open online marketplace that connects employers
@@ -41,7 +41,7 @@ const Banner = () => {
             </SwiperSlide>
 
             <SwiperSlide>
-                <div className='flex justify-between px-16'>
+                <div className='md:flex justify-between px-16'>
                     <div className='mt-28'>
                         <h2 className="text-6xl font-bold text-blue-900 mb-4">WHERE
                             <br />  THE WORLD WORKS</h2>
